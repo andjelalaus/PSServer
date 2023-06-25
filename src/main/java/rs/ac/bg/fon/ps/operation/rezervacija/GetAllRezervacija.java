@@ -10,11 +10,16 @@ import rs.ac.bg.fon.ps.domain.Rezervacija;
 import rs.ac.bg.fon.ps.operation.AbstractGenericOperation;
 
 /**
- *
- * @author Cartman
+ * Konkretna klasa za varacnje svih rezervacija.
+ * Nasleđuje apstraktnu klasu AbstractGenericOperation.
+ * Implementira metode za proveru preduslova, izvrsenje i potvrdu izvrsenja transakcije.
+ * @author andjelalaus
  */
 public class GetAllRezervacija extends AbstractGenericOperation {
 
+    /**
+     * Lista svih rezervacija imena rezervacije, nije inicijalizovana.
+     */
     private List<Rezervacija> rezervacije;
 
     @Override
@@ -25,7 +30,10 @@ public class GetAllRezervacija extends AbstractGenericOperation {
     protected void executeOperation(Object param) throws Exception {
         rezervacije = repository.getAll((Rezervacija) param);
     }
-
+/**
+ * Metoda koja vraca listu rezervacija.
+ * @return rezervacije koja predstavlja listu rezervacija
+ */
     public List<Rezervacija> getRezervacije() {
         return rezervacije;
     }

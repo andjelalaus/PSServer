@@ -9,10 +9,15 @@ import rs.ac.bg.fon.ps.domain.PlanGledanja;
 import rs.ac.bg.fon.ps.operation.AbstractGenericOperation;
 
 /**
- *
+ * Klasa koja vraca sve planove gledanja koji se nalaze u bazi
+ * Nasleđuje apstraktnu klasu AbstractGenericOperation.
+ * Implementira metode za proveru preduslova, izvrsenje i ima svoju metodu vracanja liste planova.
  * @author andelalausevic
  */
 public class GetAllPlan extends AbstractGenericOperation {
+    /**
+     * Lista planova gledanja koja nije inicijalizovana.
+     */
     private List<PlanGledanja> stavke;
 
     @Override
@@ -25,6 +30,10 @@ public class GetAllPlan extends AbstractGenericOperation {
         stavke = repository.getAll((PlanGledanja) param);
     }
 
+    /**
+     * Metoda koja vraca listu plana gledanja
+     * @return  stavke koje predstavljaju listu plana gledanja
+     */
     public List<PlanGledanja> getPlan() {
         return stavke;
     }

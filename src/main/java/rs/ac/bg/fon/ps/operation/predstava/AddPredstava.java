@@ -12,15 +12,36 @@ import rs.ac.bg.fon.ps.validator.components.NumberValidator;
 import rs.ac.bg.fon.ps.validator.components.TextValidator;
 
 /**
+ * Konkretna klasa za dodavanje predstave.
+ * Nasleđuje apstraktnu klasu AbstractGenericOperation.
+ * Implementira metode za proveru preduslova, izvrsenje i potvrdu izvrsenja transakcije.
  *
- * @author andelalausevic
+ * @author andjelalaus
  */
 public class AddPredstava extends AbstractGenericOperation{
+     /**
+     * Flag koji označava da li je dodavanje predstave uspešno.Po defaultu je false.
+     */
     private boolean flag = false;
+    /**
+     * Validator koji se koristi za validaciju predstave.
+     */
     private IValidator validator;
+      /**
+     * Poruka o izuzetku vezanom za naziv predstave.
+     */
     private String exceptionNaziv;
+      /**
+     * Poruka o izuzetku vezanom za naziv mesta gde se odrzava predstava.
+     */
     private String exceptionMesto;
+      /**
+     * Poruka o izuzetku vezanom za smestajni kapacitet predstave.
+     */
     private String exceptionKapacitet;
+     /**
+     * Poruka o svim izuzecima.
+     */
     private String exception="";
     
     @Override
@@ -59,7 +80,11 @@ try {
     protected void executeOperation(Object param) throws Exception {
         flag = repository.add((Predstava)param);
     }
-    
+        /**
+    * Proverava da li je dodavanje predstave uspešno.
+    *
+    * @return true ako je dodavanje predstave uspešno, false ako nije
+    */
     public boolean confirm(){
         return flag;
     }

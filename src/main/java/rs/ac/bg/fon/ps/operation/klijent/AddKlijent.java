@@ -12,16 +12,38 @@ import rs.ac.bg.fon.ps.validator.components.EmailValidator;
 import rs.ac.bg.fon.ps.validator.components.TextValidator;
 
 /**
- *
- * @author andelalausevic
+ * Konkretna klasa za dodavanje klijenta.
+ * Nasleđuje apstraktnu generičku klasu AbstractGenericOperation i implementira njene metode
+ * @author andjelalaus
  */
 public class AddKlijent extends AbstractGenericOperation {
+     /**
+     * Flag koji označava da li je dodavanje klijenta uspešno.
+     */
     private boolean flag = false;
+     /**
+     * Validator koji se koristi za validaciju klijenta.
+     */
     private IValidator validator;
+     /**
+     * Poruka o izuzetku vezanom za status klijenta.
+     */
     private String exceptionStatus;
+     /**
+     * Poruka o izuzetku vezanom za ime klijenta.
+     */
     private String exceptionIme;
+      /**
+     * Poruka o izuzetku vezanom za prezime klijenta.
+     */
     private String exceptionPrezime;
+      /**
+     * Poruka o izuzetku vezanom za mejl klijenta.
+     */
     private String exceptionMejl;
+    /**
+     * Opšta poruka o izuzetku.
+     */
     private String exception="";
     
     protected void preconditions(Object param) throws ValidatorException{
@@ -67,7 +89,11 @@ public class AddKlijent extends AbstractGenericOperation {
         flag = repository.add((Klijent)param);
     }
     
-    
+    /**
+    * Proverava da li je dodavanje klijenta uspešno.
+    *
+    * @return true ako je dodavanje klijenta uspešno, false ako nije
+    */
     public boolean confirm(){
         System.out.println("Dodat klijent");
         return flag;

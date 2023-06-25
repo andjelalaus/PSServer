@@ -19,16 +19,44 @@ import rs.ac.bg.fon.ps.domain.Klijent;
 import rs.ac.bg.fon.ps.domain.User;
 
 /**
- *
- * @author Cartman
+ * Klasa za procesiranje zahteva klijenata.
+ * Nasledjuje klasu nit Thread
+ * i implementira njenu metodu run
+ * u kojoj sve dok je tacno prima zahtev preko receiver-a i generise response
+ * proverava da li zahtev odgovar loginu,getall(reservations/shows/items_reservation/all_predstave/all_tickets/all_plan
+ * ili add(predstava/rezervacija/klijent/karta/plan/stavka) ili delete(predstava/karta/rezervacija/stavka/plan)
+ * ili update(rezervacija/stavka) ukoliko odgovara setuje rezultat odgovora response i salje controleru sta da radi
+ * ukoliko ne izvrsava se exception
+ * na kraju se setuje odgovor preko sendera
+ * @author andjelalaus
  */
 public class ProcessClientsRequests extends Thread {
 
+    /**
+     * socket koji predstavlja objekat Socket klase
+     * za uspostavljanje veze sa serverskim soketom
+     */
     Socket socket;
+    /**
+     * sender koji predstavlja objekat klase Sender
+     * za odgovaranje klijentu
+     */
     Sender sender;
+    /**
+     * receiver koji predstavlja objekat klase Receiver
+     * za dobijanje zahteva od klijenta
+     */
     Receiver receiver;
+    /**
+     * user2 objekat klase User predstavlja povezanog korisnika
+     */
     User user2;
 
+    /**
+     * Konstruktor ProcessClientsRequests gde se inizijalizuje soket dobijen kao parametar od servera
+     * inicijalizuje se novi sender i receiver kojima se prosledjuje socket
+     * @param socket koji se dobija od Servera-a za uspostavljanje veze
+     */
     public ProcessClientsRequests(Socket socket) {
         this.socket = socket;
         sender = new Sender(socket);
@@ -125,10 +153,18 @@ public class ProcessClientsRequests extends Thread {
         }
     }
 
-    
+    /**
+     * Metoda za vracanja instance klase Socket
+     * @return socket instanca klase Socket
+     */
     public Socket getSocket() {
         return socket;
     }
+    /**
+     * Metoda za vracanje korisnika
+     * 
+     * @return user2 koji predstavlja korisnika
+     */
     public User getUser() {
         return user2;
     }

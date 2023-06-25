@@ -14,16 +14,25 @@ import rs.ac.bg.fon.ps.form.component.table.UserTableModel;
 import rs.ac.bg.fon.ps.server.Server;
 
 /**
- *
- * @author Milos Milic
+ * Glavna forma koja se prva pokrece pri pokretanju serverske aplikacije
+ * nasledjuje JFrame
+ * moze da startuje i stopira server
+ * 
+ * 
+ * @author andjelalaus
  */
 public class FrmMain extends javax.swing.JFrame {
 
     /**
-     * Creates new form FrmMain
+     * paramtera klase server koja se zove server
      */
     private Server server;
 
+    /**
+    * Konstruktor klase FrmMain.
+    * Inicijalizuje komponente prozora, postavlja prošireno stanje prozora na maksimizirano,
+    * onemogućava dugme btnStop, postavlja status servera na isključen i boju teksta na crvenu.
+    */
     public FrmMain() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -115,6 +124,14 @@ public class FrmMain extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+    * Metoda koja se poziva kada se pritisne dugme btnStart.
+    * Pokreće server ako server nije već pokrenut.
+    * Ažurira stanje dugmica i prikazuje status servera da je on
+    *
+    * @param evt događaj akcije
+    * @throws IOException u slučaju greške prilikom pokretanja servera
+    */
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         if (server == null || !server.isAlive()) {
             try {
@@ -130,6 +147,14 @@ public class FrmMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnStartActionPerformed
 
+    /**
+    * Metoda koja se poziva kada se pritisne dugme btnStop.
+    * Zaustavlja server ako postoji aktivni server socket.
+    * Ažurira stanje dugmica i prikazuje status servera da je off
+    *
+    * @param evt događaj akcije
+    * @throws IOException u slučaju greške prilikom zatvaranja server socket-a
+    */
     private void btnStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStopActionPerformed
         if (server.getServerSocket() != null) {
             try {
@@ -145,10 +170,22 @@ public class FrmMain extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnStopActionPerformed
 
+    /**
+    * Metoda koja se poziva kada se izabere opcija jmServer.
+    * Implementacija ove metode se može dodati za obrađivanje događaja klika na tu opciju.
+    *
+    * @param evt događaj akcije
+    */
     private void jmServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmServerActionPerformed
         
     }//GEN-LAST:event_jmServerActionPerformed
 
+    /**
+    * Metoda koja se poziva kada se izabere opcija jMenuItem1.
+    * Otvora dijalog FrmActiveUsers za prikaz aktivnih korisnika servera.
+    *
+    * @param evt događaj akcije
+    */
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
        new FrmActiveUsers(this, rootPaneCheckingEnabled, server.getActiveUsers()).setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed

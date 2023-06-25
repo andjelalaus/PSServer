@@ -9,17 +9,25 @@ import rs.ac.bg.fon.ps.domain.Klijent;
 import rs.ac.bg.fon.ps.domain.User;
 import rs.ac.bg.fon.ps.form.component.table.UserTableModel;
 
-/**
- *
- * @author LENOVO
- */
+    /**
+     *Forma koja prikazuje aktivne korisnike koji su pristupili aplikaciji sa klijentske strane
+     * ima jedan parametar i to listu aktivnih korisnika
+     * @author andjelalaus
+     */
 public class FrmActiveUsers extends javax.swing.JDialog {
 
     /**
-     * Creates new form FrmActiveUsers
+     * Lista korisnika koja je staticka i zove se users
      */
     private static List<User> users;
 
+    /**
+    * Konstruktor klase FrmActiveUsers.
+    * u konstruktoru se takodje poziva metoda prepareView za pripremu forme
+    * @param parent roditeljski okvir
+    * @param modal  da li je dijalog modalan (true ili false)
+    * @param users  lista korisnika
+    */
     public FrmActiveUsers(java.awt.Frame parent, boolean modal, List<User> users) {
         super(parent, modal);
         initComponents();
@@ -74,16 +82,19 @@ public class FrmActiveUsers extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+  
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Metoda koja priprema izgled forme
+     * setuje tabelu da izgleda kao UserTableModel kojoj prosledjuje listu users
+     */
     private void prepareView() {
         tbl.setModel(new UserTableModel(users));
     }

@@ -12,12 +12,24 @@ import rs.ac.bg.fon.ps.validator.components.NumberValidator;
 import rs.ac.bg.fon.ps.validator.components.OcenaValidator;
 
 /**
+ * Konkretna klasa za dodavanje plana gledanja.
+ * Nasleđuje apstraktnu klasu AbstractGenericOperation.
+ * Implementira metode za proveru preduslova, izvrsenje i ima svoju metodu potvrdu izvrsenja transakcije.
  *
  * @author andelalausevic
  */
 public class AddPlan extends AbstractGenericOperation{
+     /**
+     * Flag koji označava da li je dodavanje plana uspešno.Po defaultu je false.
+     */
    private boolean flag = false;
+    /**
+     * Poruka o izuzetku vezanom za ocenu.
+     */
     private String exceptionOcena;
+     /**
+     * Validator koji se koristi za validaciju plana.
+     */
     private IValidator validator;
     
     @Override
@@ -39,7 +51,11 @@ public class AddPlan extends AbstractGenericOperation{
     protected void executeOperation(Object param) throws Exception {
         flag = repository.add((PlanGledanja)param);
     }
-    
+     /**
+    * Proverava da li je dodavanje plana uspešno.
+    *
+    * @return true ako je dodavanje plana uspešno, false ako nije
+    */
     public boolean confirm(){
         return flag;
     }

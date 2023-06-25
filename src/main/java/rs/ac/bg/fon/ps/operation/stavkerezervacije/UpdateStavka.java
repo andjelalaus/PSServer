@@ -12,16 +12,39 @@ import rs.ac.bg.fon.ps.validator.components.NumberValidator;
 import rs.ac.bg.fon.ps.validator.components.PopustValidator;
 
 /**
- *
- * @author andelalausevic
+ * Konkretna klasa za auzuriranje stavki rezervacija.
+ * Nasleđuje apstraktnu klasu AbstractGenericOperation.
+ * Implementira metode za proveru preduslova, izvrsenje i potvrdu izvrsenja transakcije.
+ * @author andjelalaus
  */
 public class UpdateStavka extends AbstractGenericOperation {
-      private boolean flag = false;
+     /**
+     * Flag koji označava da li je dodavanje stavke uspešno.Po defaultu je false.
+     */
+    private boolean flag = false;
+     /**
+     * Validator koji se koristi za validaciju stavki rezervacije.
+     */
     private IValidator validator;
+    /**
+     * Poruka o izuzetku vezanom za broj sedista.
+     */
     private String exceptionBrojSedista;
+     /**
+     * Poruka o izuzetku vezanom za nepostojanje rezervacije.
+     */
     private String exceptionRezervacija;
+     /**
+     * Poruka o izuzetku vezanom za nepostojanje predstave.
+     */
     private String exceptionPredstava;
+     /**
+     * Poruka o izuzetku vezanom za popust.
+     */
     private String exceptionPopust;
+     /**
+     * Poruka o svim izuzecima.
+     */
     private String exception="";
     
     @Override
@@ -69,7 +92,11 @@ public class UpdateStavka extends AbstractGenericOperation {
     protected void executeOperation(Object param) throws Exception {
         flag = repository.edit((StavkaRezervacije)param);
     }
-    
+    /**
+    * Proverava da li je auzuriranje stavke uspešno.
+    *
+    * @return true ako je dodavanje stavke uspešno, false ako nije
+    */
     public boolean confirm(){
         return flag;
     }

@@ -12,14 +12,31 @@ import rs.ac.bg.fon.ps.validator.ValidatorException;
 import rs.ac.bg.fon.ps.validator.components.OpstiValidator;
 
 /**
- *
- * @author andelalausevic
+ * Konkretna klasa za prijavu korisnika.
+ * Nasleđuje apstraktnu klasu AbstractGenericOperation.
+ * Implementira metode za proveru preduslova, izvrsenje i potvrdu izvrsenja transakcije.
+ * @author andjelalaus
  */
 public class Login extends AbstractGenericOperation{
+     /**
+     * Validator koji se koristi za validaciju login-a.
+     */
      private IValidator validator;
+       /**
+     * Poruka o svim izuzecima.
+     */
     private String exception = "";
+     /**
+     * Poruka o izuzetku vezanom za username.
+     */
     private String exceptionUsername;
+     /**
+     * Poruka o izuzetku vezanom za password.
+     */
     private String exceptionPassword;
+     /**
+     * Objekat login kojem se dodeljuje user
+     */
     private Object login;
 
     @Override
@@ -56,7 +73,10 @@ public class Login extends AbstractGenericOperation{
         }
 
     }
-    
+    /**
+     * Metoda koja vraca korisnika koji je ulogovan.
+     * @return login koji predstavlja korisnika koji je ulogovan.
+     */
     public Object getLogin(){
         return login;
     }

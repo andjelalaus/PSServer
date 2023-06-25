@@ -8,12 +8,25 @@ import rs.ac.bg.fon.ps.domain.Rezervacija;
 import rs.ac.bg.fon.ps.operation.AbstractGenericOperation;
 
 /**
+ * 
+ * Konkretna klasa za brisanje rezervacije.
+ * Nasleđuje apstraktnu klasu AbstractGenericOperation.
+ * Implementira metode za proveru preduslova, izvrsenje i potvrdu izvrsenja transakcije.
  *
- * @author andelalausevic
+ * @author andjelalaus
  */
 public class DeleteRezervacija extends AbstractGenericOperation{
+    /**
+     * Flag koji označava da li je brisanje rezervacije uspešno.Po defaultu je false.
+     */
     private boolean flag = false;
+     /**
+     * Poruka o izuzetku vezanom za broj sedista.
+     */
     private String exceptionBrojSedista;
+    /**
+     * Poruka o svim izuzecima
+     */
     private String exception;
     @Override
     protected void preconditions(Object param) throws Exception {
@@ -33,7 +46,11 @@ public class DeleteRezervacija extends AbstractGenericOperation{
     protected void executeOperation(Object param) throws Exception {
         flag = repository.delete((Rezervacija)param);
     }
-    
+    /**
+    * Proverava da li je brisanje rezervacije uspešno.
+    *
+    * @return true ako je brisanje rezervacije uspešno, false ako nije
+    */
     public boolean confirm(){
         return flag;
     }

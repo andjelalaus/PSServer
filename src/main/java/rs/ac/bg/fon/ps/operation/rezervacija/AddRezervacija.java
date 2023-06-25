@@ -12,14 +12,31 @@ import rs.ac.bg.fon.ps.validator.ValidatorException;
 import rs.ac.bg.fon.ps.validator.components.NumberValidator;
 
 /**
- *
- * @author andelalausevic
+ * Konkretna klasa za dodavanje rezervacija.
+ * Nasleđuje apstraktnu klasu AbstractGenericOperation.
+ * Implementira metode za proveru preduslova, izvrsenje i potvrdu izvrsenja transakcije.
+ * @author andjelalaus
  */
 public class AddRezervacija extends AbstractGenericOperation{
+    /**
+     * id rezervacije
+     */
     private Integer id;
+     /**
+     * Validator koji se koristi za validaciju rezervacije.
+     */
     private IValidator validator;
+    /**
+     * Poruka o izuzetku vezanom za broj predstavi.
+     */
     private String exceptionBrojPredstava;
+    /**
+     * Poruka o izuzetku vezanom za klijenta.
+     */
     private String exceptionKlijent;
+    /**
+     * Poruka o svim izuzecima.
+     */
     private String exception="";
     
     @Override
@@ -52,7 +69,11 @@ public class AddRezervacija extends AbstractGenericOperation{
     protected void executeOperation(Object param) throws Exception {
      id = repository.addReturnKey((Rezervacija)param);
     }
-    
+    /**
+    * Vraca id rezervacije ako je dodavanje rezervacije uspešno.
+    *
+    * @return integer ako je dodavanje rezervacije uspesno
+    */
     public Integer confirm(){
         return id;
     }

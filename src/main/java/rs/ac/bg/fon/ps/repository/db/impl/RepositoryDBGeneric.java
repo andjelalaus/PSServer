@@ -18,8 +18,10 @@ import rs.ac.bg.fon.ps.repository.db.DbConnectionFactory;
 import rs.ac.bg.fon.ps.repository.db.DbRepository;
 
 /**
- *
- * @author Cartman
+ * Klasa RepositoryDBGeneric koja implementira interfejs DbRepository 
+ * i sve metode koje poseduje interfejs Repository koji je impementirao DbRepository
+ * sve crud operacije se nalaze u ovoj klasi implementirane
+ * @author Andjy
  */
 public class RepositoryDBGeneric implements DbRepository<GenericEntity> {
 

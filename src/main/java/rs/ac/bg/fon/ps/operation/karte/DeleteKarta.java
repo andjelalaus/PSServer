@@ -12,12 +12,28 @@ import rs.ac.bg.fon.ps.validator.components.NumberValidator;
 
 /**
  *
+ * Konkretna klasa za brisanje karte.
+ * Nasleđuje apstraktnu klasu AbstractGenericOperation i implementira sve njene metode.
+ * 
+ *
  * @author andelalausevic
  */
 public class DeleteKarta extends AbstractGenericOperation {
-     private boolean flag = false;
+     /**
+     * Flag koji označava da li je brisanje karte uspešno.
+     */
+    private boolean flag = false;
+     /**
+     * Poruka o izuzetku vezanom za cenu.
+     */
     private String exceptionCena;
+     /**
+     * Poruka o izuzetku koji ce sadrzati sve izuzetke vezane za kartu.
+     */
     private String exception="";
+    /**
+     * Validator koji se koristi za validaciju karte.
+     */
     private IValidator validator;
     
     @Override
@@ -44,6 +60,11 @@ public class DeleteKarta extends AbstractGenericOperation {
         flag = repository.delete((Karta)param);
     }
     
+    /**
+    * Proverava da li je brisanje karte uspešno.
+    *
+    * @return true ako je brisanje karte uspešno, false ako nije
+    */
     public boolean confirm(){
         return flag;
     }

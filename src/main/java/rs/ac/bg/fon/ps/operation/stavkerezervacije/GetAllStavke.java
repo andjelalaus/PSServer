@@ -9,10 +9,15 @@ import rs.ac.bg.fon.ps.domain.StavkaRezervacije;
 import rs.ac.bg.fon.ps.operation.AbstractGenericOperation;
 
 /**
- *
- * @author andelalausevic
+ * Konkretna klasa za vracanje svih stavki rezervacija.
+ * Nasleđuje apstraktnu klasu AbstractGenericOperation.
+ * Implementira metode za proveru preduslova, izvrsenje i potvrdu izvrsenja transakcije.
+ * @author andjelalaus
  */
 public class GetAllStavke extends AbstractGenericOperation {
+    /**
+     * Lista stavki rezervacije koja nije inicijalizovana
+     */
     private List<StavkaRezervacije> stavke;
 
     @Override
@@ -24,7 +29,10 @@ public class GetAllStavke extends AbstractGenericOperation {
     protected void executeOperation(Object param) throws Exception {
         stavke = repository.getAll((StavkaRezervacije) param);
     }
-
+/**
+ * Metoda koja vraca listu stavki rezervacija
+ * @return stavke koja predstavlja listu stavki
+ */
     public List<StavkaRezervacije> getStavke() {
         return stavke;
     }

@@ -12,16 +12,36 @@ import rs.ac.bg.fon.ps.validator.components.NumberValidator;
 import rs.ac.bg.fon.ps.validator.components.TextValidator;
 
 /**
- *
- * @author andelalausevic
+ * Konkretna klasa za brisanje predstave.
+ * Nasleđuje apstraktnu klasu AbstractGenericOperation.
+ * Implementira metode za proveru preduslova, izvrsenje i potvrdu izvrsenja transakcije.
+ * @author andjelalaus
  */
 public class DeletePredstava extends AbstractGenericOperation{
+    /**
+     * Flag koji označava da li je brisanje predstave uspešno.Po defaultu je false.
+     */
     private boolean flag = false;
 
+    /**
+     * Poruka o izuzetku vezanom za naziv predstave.
+     */
     private String exceptionNaziv;
+      /**
+     * Poruka o izuzetku vezanom za naziv mesta gde se odrzava predstava.
+     */
     private String exceptionMesto;
+      /**
+     * Poruka o izuzetku vezanom za smestajni kapacitet predstave.
+     */
     private String exceptionKapacitet;
+    /**
+     * Poruka o izuzetku vezanom za vreme odrzavanja predstave.
+     */
     private String exceptionVreme;
+    /**
+     * Poruka o svim izuzecima.
+     */
     private String exception="";
     
     @Override
@@ -54,7 +74,11 @@ public class DeletePredstava extends AbstractGenericOperation{
     protected void executeOperation(Object param) throws Exception {
         flag = repository.delete((Predstava)param);
     }
-    
+    /**
+    * Proverava da li je brisanje predstave uspešno.
+    *
+    * @return true ako je brisanje predstave uspešno, false ako nije
+    */
     public boolean confirm(){
         return flag;
     }

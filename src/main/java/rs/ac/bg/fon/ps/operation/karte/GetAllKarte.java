@@ -9,10 +9,14 @@ import rs.ac.bg.fon.ps.domain.Karta;
 import rs.ac.bg.fon.ps.operation.AbstractGenericOperation;
 
 /**
- *
- * @author andelalausevic
+ * Klasa za vracanje svih karata koje postoje u bazi podataka.
+ * Nasledjuje apstraktnu klasu AbstractGenericOperation i implementira njene metode.
+ * @author andjelalaus
  */
 public class GetAllKarte extends AbstractGenericOperation {
+     /**
+     * Lista karata koja ce se napuniti operacijom pretrage svih karata.
+     */
         private List<Karta> karte;
 
     @Override
@@ -25,6 +29,11 @@ public class GetAllKarte extends AbstractGenericOperation {
         karte = repository.getAll((Karta) param);
     }
 
+    /**
+    * Vraća listu karata dobijenih operacijom pretrage svih karata.
+    *
+    * @return lista karata
+    */
     public List<Karta> getKarte() {
         return karte;
     }

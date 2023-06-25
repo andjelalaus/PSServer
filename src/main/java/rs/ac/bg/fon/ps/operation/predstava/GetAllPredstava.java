@@ -9,10 +9,14 @@ import rs.ac.bg.fon.ps.domain.Predstava;
 import rs.ac.bg.fon.ps.operation.AbstractGenericOperation;
 
 /**
- *
+ * Klasa za vracanje svih predstava iz baze podataka
+ * Nasledjuje apstraktnu klasu AbstractGenericOperation i implementira sve njene metode.
  * @author andelalausevic
  */
 public class GetAllPredstava extends AbstractGenericOperation{
+    /**
+     * predstave su lista predstavi, lista nije inicijalizovana
+     */
      private List<Predstava> predstave;
 
     @Override
@@ -25,6 +29,10 @@ public class GetAllPredstava extends AbstractGenericOperation{
         predstave = repository.getAll((Predstava) param);
     }
 
+    /**
+     * metoda vraca listu predstavi
+     * @return predstave lista predstavi
+     */
     public List<Predstava> getPredstave() {
         return predstave;
     }

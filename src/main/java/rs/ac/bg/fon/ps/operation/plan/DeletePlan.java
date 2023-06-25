@@ -8,13 +8,22 @@ import rs.ac.bg.fon.ps.domain.PlanGledanja;
 import rs.ac.bg.fon.ps.operation.AbstractGenericOperation;
 
 /**
- *
+ * Klasa za brisanje plana gledanja.
+ * Nasledjuje klasu AbstractGenericOperation i njene metode implementira.
  * @author andelalausevic
  */
 public class DeletePlan extends AbstractGenericOperation{
+    /**
+     * Flag koji označava da li je brisanje predstave uspešno.Po defaultu je false.
+     */
      private boolean flag = false;
+     /**
+     * Poruka o izuzetku vezanom za ocenu.
+     */
     private String exceptionOcena;
-   
+    /**
+     * Poruka o opstem izuzetku.
+     */
     private String exception;
     @Override
     protected void preconditions(Object param) throws Exception {
@@ -37,7 +46,11 @@ public class DeletePlan extends AbstractGenericOperation{
     protected void executeOperation(Object param) throws Exception {
         flag = repository.delete((PlanGledanja)param);
     }
-    
+    /**
+    * Proverava da li je brisanje plana uspešno.
+    *
+    * @return true ako je brisanje plana uspešno, false ako nije
+    */
     public boolean confirm(){
         return flag;
     }
