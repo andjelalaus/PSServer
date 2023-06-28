@@ -6,6 +6,7 @@ package rs.ac.bg.fon.ps.PSServer.operation.predstava;
 
 import rs.ac.bg.fon.ps.PSCommon.domain.Predstava;
 import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 import rs.ac.bg.fon.ps.PSServer.validator.IValidator;
 import rs.ac.bg.fon.ps.PSServer.validator.ValidatorException;
 import rs.ac.bg.fon.ps.PSServer.validator.components.NumberValidator;
@@ -43,6 +44,13 @@ public class AddPredstava extends AbstractGenericOperation{
      * Poruka o svim izuzecima.
      */
     private String exception="";
+
+    public AddPredstava() {
+    }
+
+    public AddPredstava(Repository repo) {
+        repository=repo;
+    }
     
     @Override
     protected void preconditions(Object param) throws ValidatorException{

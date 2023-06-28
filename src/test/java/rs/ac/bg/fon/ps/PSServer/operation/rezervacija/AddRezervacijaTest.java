@@ -4,14 +4,26 @@
  */
 package rs.ac.bg.fon.ps.PSServer.operation.rezervacija;
 
+import java.time.LocalDateTime;
+import java.time.Month;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import rs.ac.bg.fon.ps.PSCommon.domain.Karta;
 import rs.ac.bg.fon.ps.PSCommon.domain.Klijent;
+import rs.ac.bg.fon.ps.PSCommon.domain.Predstava;
 import rs.ac.bg.fon.ps.PSCommon.domain.Rezervacija;
+import rs.ac.bg.fon.ps.PSCommon.domain.StavkaRezervacije;
+import rs.ac.bg.fon.ps.PSServer.operation.karte.AddKarta;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 import rs.ac.bg.fon.ps.PSServer.validator.ValidatorException;
 
 /**
@@ -56,6 +68,21 @@ public class AddRezervacijaTest {
 
         
       assertThrows(ValidatorException.class, ()->ak.preconditions(r));
+    }
+    @Test
+    public void testExecuteOperation() throws Exception{
+        Rezervacija k=new Rezervacija(1,1, new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan"));
+        
+       
+        Repository repository = mock(Repository.class);
+        AddRezervacija addRez = new AddRezervacija(repository);
+        
+        when(repository.addReturnKey(any(Rezervacija.class))).thenReturn(1);
+        
+        addRez.executeOperation(k);
+        
+        verify(repository,times(1)).addReturnKey(any(Rezervacija.class));
+        
     }
     
 }

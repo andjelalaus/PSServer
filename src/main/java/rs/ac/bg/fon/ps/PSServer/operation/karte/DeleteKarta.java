@@ -6,6 +6,7 @@ package rs.ac.bg.fon.ps.PSServer.operation.karte;
 
 import rs.ac.bg.fon.ps.PSCommon.domain.Karta;
 import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 import rs.ac.bg.fon.ps.PSServer.validator.IValidator;
 import rs.ac.bg.fon.ps.PSServer.validator.ValidatorException;
 import rs.ac.bg.fon.ps.PSServer.validator.components.NumberValidator;
@@ -35,6 +36,13 @@ public class DeleteKarta extends AbstractGenericOperation {
      * Validator koji se koristi za validaciju karte.
      */
     private IValidator validator;
+
+    public DeleteKarta(){
+        
+    }
+    public DeleteKarta(Repository repo) {
+        repository=repo;
+    }
     
     @Override
     protected void preconditions(Object param) throws ValidatorException {

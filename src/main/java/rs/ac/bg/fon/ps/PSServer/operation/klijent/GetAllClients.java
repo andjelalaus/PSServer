@@ -7,6 +7,7 @@ package rs.ac.bg.fon.ps.PSServer.operation.klijent;
 import java.util.List;
 import rs.ac.bg.fon.ps.PSCommon.domain.Klijent;
 import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 
 /**
  * Konkretna klasa za vracanje svih klijenata.
@@ -19,6 +20,14 @@ public class GetAllClients extends AbstractGenericOperation {
      * Lista klijenata koja nije inicijalizovana
      */
     private List<Klijent> klijenti;
+
+    public GetAllClients() {
+    }
+
+    
+    public GetAllClients(Repository repo) {
+        repository=repo;
+    }
     
     @Override
     protected void preconditions(Object param) throws Exception {

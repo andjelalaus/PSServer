@@ -4,13 +4,26 @@
  */
 package rs.ac.bg.fon.ps.PSServer.operation.klijent;
 
+import java.time.LocalDateTime;
+import java.time.Month;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import rs.ac.bg.fon.ps.PSCommon.domain.Karta;
 import rs.ac.bg.fon.ps.PSCommon.domain.Klijent;
+import rs.ac.bg.fon.ps.PSCommon.domain.Predstava;
+import rs.ac.bg.fon.ps.PSCommon.domain.Rezervacija;
+import rs.ac.bg.fon.ps.PSCommon.domain.StavkaRezervacije;
+import rs.ac.bg.fon.ps.PSServer.operation.karte.AddKarta;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 import rs.ac.bg.fon.ps.PSServer.validator.ValidatorException;
 
 /**
@@ -168,5 +181,19 @@ public class AddKlijentTest {
         k.setPrezime("Brzo smeškaći mali pas skače preko velikih žbunova i veselo mlatara repom dok trči livadom punom šarenih cvetova.");
         
         assertThrows(ValidatorException.class,()->ak.preconditions(k),"Polje moze da sadrzi maksimalno 100 znakova");
+    }
+       @Test
+    public void testExecuteOperation() throws Exception{
+        Klijent k=new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan");
+        
+        Repository repository = mock(Repository.class);
+        AddKlijent addKlijent = new AddKlijent(repository);
+        
+        when(repository.add(any(Klijent.class))).thenReturn(Boolean.TRUE);
+        
+        addKlijent.executeOperation(k);
+        
+        verify(repository,times(1)).add(any(Klijent.class));
+        
     }
 }

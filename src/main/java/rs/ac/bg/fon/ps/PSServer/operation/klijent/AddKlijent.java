@@ -6,6 +6,7 @@ package rs.ac.bg.fon.ps.PSServer.operation.klijent;
 
 import rs.ac.bg.fon.ps.PSCommon.domain.Klijent;
 import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 import rs.ac.bg.fon.ps.PSServer.validator.IValidator;
 import rs.ac.bg.fon.ps.PSServer.validator.ValidatorException;
 import rs.ac.bg.fon.ps.PSServer.validator.components.EmailValidator;
@@ -46,6 +47,12 @@ public class AddKlijent extends AbstractGenericOperation {
      */
     private String exception="";
     
+    public AddKlijent(){
+        
+    }
+    public AddKlijent(Repository repo){
+        repository=repo;
+    }
     protected void preconditions(Object param) throws ValidatorException{
         Klijent klijent = (Klijent)param;
         validator = new EmailValidator();

@@ -6,6 +6,7 @@ package rs.ac.bg.fon.ps.PSServer.operation.plan;
 
 import rs.ac.bg.fon.ps.PSCommon.domain.PlanGledanja;
 import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 import rs.ac.bg.fon.ps.PSServer.validator.IValidator;
 import rs.ac.bg.fon.ps.PSServer.validator.ValidatorException;
 import rs.ac.bg.fon.ps.PSServer.validator.components.NumberValidator;
@@ -31,7 +32,12 @@ public class AddPlan extends AbstractGenericOperation{
      * Validator koji se koristi za validaciju plana.
      */
     private IValidator validator;
-    
+
+    public AddPlan() {
+    }
+     public AddPlan(Repository repo) {
+         repository=repo;
+    }
     @Override
     protected void preconditions(Object param) throws ValidatorException {
         PlanGledanja pt = (PlanGledanja)param;

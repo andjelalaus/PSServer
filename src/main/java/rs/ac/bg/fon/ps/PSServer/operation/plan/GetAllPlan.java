@@ -7,6 +7,7 @@ package rs.ac.bg.fon.ps.PSServer.operation.plan;
 import java.util.List;
 import rs.ac.bg.fon.ps.PSCommon.domain.PlanGledanja;
 import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 
 /**
  * Klasa koja vraca sve planove gledanja koji se nalaze u bazi
@@ -20,6 +21,11 @@ public class GetAllPlan extends AbstractGenericOperation {
      */
     private List<PlanGledanja> stavke;
 
+    public GetAllPlan() {
+    }
+    public GetAllPlan(Repository repo) {
+        repository=repo;
+    }
     @Override
     protected void preconditions(Object param) throws Exception {
         //nema

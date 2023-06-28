@@ -20,7 +20,7 @@ public abstract class AbstractGenericOperation {
     /**
      * objekat klase Repository imena repository
      */
-    protected final Repository repository;
+    protected  Repository repository;
 
     /**
      * Konstruktor klase AbstractGenericOperation.

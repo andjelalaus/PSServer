@@ -6,6 +6,7 @@ package rs.ac.bg.fon.ps.PSServer.operation.plan;
 
 import rs.ac.bg.fon.ps.PSCommon.domain.PlanGledanja;
 import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 
 /**
  * Klasa za brisanje plana gledanja.
@@ -25,6 +26,12 @@ public class DeletePlan extends AbstractGenericOperation{
      * Poruka o opstem izuzetku.
      */
     private String exception;
+
+    public DeletePlan() {
+    }
+    public DeletePlan(Repository repo) {
+        repository=repo;
+    }
     @Override
     protected void preconditions(Object param) throws Exception {
          PlanGledanja t = (PlanGledanja)param;

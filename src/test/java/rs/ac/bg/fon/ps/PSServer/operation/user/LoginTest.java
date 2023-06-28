@@ -62,5 +62,17 @@ public class LoginTest {
         
         assertThrows(ValidatorException.class,()->ak.preconditions(u));
     }
+      @Test
+      public void testexcecute() throws Exception{
+           User u=new User("admin", "admin");
+           ak.executeOperation(u);
+           assertEquals(u,ak.getLogin());
+      }
+       @Test
+      public void testexcecuteError() throws Exception{
+           User u=new User("admin1", "admin1");
+           ak.executeOperation(u);
+           assertNotEquals(u,ak.getLogin());
+      }
     
 }

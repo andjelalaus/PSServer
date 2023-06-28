@@ -7,6 +7,7 @@ package rs.ac.bg.fon.ps.PSServer.operation.predstava;
 import java.util.List;
 import rs.ac.bg.fon.ps.PSCommon.domain.Predstava;
 import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 
 /**
  * Klasa za vracanje svih predstava iz baze podataka
@@ -18,6 +19,13 @@ public class GetAllPredstava extends AbstractGenericOperation{
      * predstave su lista predstavi, lista nije inicijalizovana
      */
      private List<Predstava> predstave;
+
+     public GetAllPredstava(){
+         
+     }
+   public GetAllPredstava(Repository repo) {
+        repository=repo;
+    }
 
     @Override
     protected void preconditions(Object param) throws Exception {

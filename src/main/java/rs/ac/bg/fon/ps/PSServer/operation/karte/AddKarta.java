@@ -6,6 +6,7 @@ package rs.ac.bg.fon.ps.PSServer.operation.karte;
 
 import rs.ac.bg.fon.ps.PSCommon.domain.Karta;
 import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 import rs.ac.bg.fon.ps.PSServer.validator.IValidator;
 import rs.ac.bg.fon.ps.PSServer.validator.ValidatorException;
 import rs.ac.bg.fon.ps.PSServer.validator.components.NumberValidator;
@@ -43,6 +44,15 @@ public class AddKarta extends AbstractGenericOperation {
      * Poruka o izuzetku koja ce sadrzati sve nastale izuzetke.
      */
     private String exception="";
+
+    public AddKarta(){
+        
+    }
+    public AddKarta(Repository repo) {
+        this.repository=repo;
+    }
+
+   
     
     @Override
     protected void preconditions(Object param) throws ValidatorException{
@@ -87,5 +97,5 @@ public class AddKarta extends AbstractGenericOperation {
     */
     public boolean confirm(){
         return flag;
-    }
+    } 
 }

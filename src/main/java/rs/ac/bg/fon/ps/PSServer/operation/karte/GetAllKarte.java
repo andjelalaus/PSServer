@@ -7,6 +7,7 @@ package rs.ac.bg.fon.ps.PSServer.operation.karte;
 import java.util.List;
 import rs.ac.bg.fon.ps.PSCommon.domain.Karta;
 import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 
 /**
  * Klasa za vracanje svih karata koje postoje u bazi podataka.
@@ -18,6 +19,13 @@ public class GetAllKarte extends AbstractGenericOperation {
      * Lista karata koja ce se napuniti operacijom pretrage svih karata.
      */
         private List<Karta> karte;
+
+   public GetAllKarte(){
+       
+   } 
+   public  GetAllKarte(Repository repo) {
+       repository=repo;
+    }
 
     @Override
     protected void preconditions(Object param) throws Exception {

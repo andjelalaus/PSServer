@@ -6,6 +6,7 @@ package rs.ac.bg.fon.ps.PSServer.operation.rezervacija;
 
 import rs.ac.bg.fon.ps.PSCommon.domain.Rezervacija;
 import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 
 /**
  * 
@@ -28,6 +29,14 @@ public class DeleteRezervacija extends AbstractGenericOperation{
      * Poruka o svim izuzecima
      */
     private String exception;
+
+    public DeleteRezervacija() {
+    }
+
+    
+    public DeleteRezervacija(Repository repo) {
+        repository=repo;
+    }
     @Override
     protected void preconditions(Object param) throws Exception {
          Rezervacija t = (Rezervacija)param;

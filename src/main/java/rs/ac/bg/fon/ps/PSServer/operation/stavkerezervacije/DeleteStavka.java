@@ -6,6 +6,7 @@ package rs.ac.bg.fon.ps.PSServer.operation.stavkerezervacije;
 
 import rs.ac.bg.fon.ps.PSCommon.domain.StavkaRezervacije;
 import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 
 /**
  * Konkretna klasa za brisanje stavki rezervacija.
@@ -34,6 +35,14 @@ public class DeleteStavka extends AbstractGenericOperation {
      * Poruka o svim izuzecima.
      */
     private String exception;
+
+    public DeleteStavka() {
+    }
+
+    
+    public DeleteStavka(Repository repo) {
+        repository=repo;
+    }
     @Override
     protected void preconditions(Object param) throws Exception {
          StavkaRezervacije t = (StavkaRezervacije)param;

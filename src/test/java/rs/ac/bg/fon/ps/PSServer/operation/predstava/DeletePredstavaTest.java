@@ -5,13 +5,24 @@
 package rs.ac.bg.fon.ps.PSServer.operation.predstava;
 
 import java.time.LocalDateTime;
+import java.time.Month;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import rs.ac.bg.fon.ps.PSCommon.domain.Karta;
+import rs.ac.bg.fon.ps.PSCommon.domain.Klijent;
 import rs.ac.bg.fon.ps.PSCommon.domain.Predstava;
+import rs.ac.bg.fon.ps.PSCommon.domain.Rezervacija;
+import rs.ac.bg.fon.ps.PSCommon.domain.StavkaRezervacije;
+import rs.ac.bg.fon.ps.PSServer.operation.karte.DeleteKarta;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 import rs.ac.bg.fon.ps.PSServer.validator.ValidatorException;
 
 /**
@@ -66,6 +77,20 @@ public class DeletePredstavaTest {
         p.setKapacitet(100);
         
         assertThrows(Exception.class,()->ak.preconditions(p),"Vreme predstave ne sme biti prazno");
+    }
+      @Test
+    public void testExecuteOperation() throws Exception{
+        LocalDateTime ld=LocalDateTime.of(2023, Month.MARCH, 10, 20, 0);
+        Predstava k=new Predstava(1, "Here", "Here",ld,20);
+        
+        Repository repository = mock(Repository.class);
+        DeletePredstava dk = new DeletePredstava(repository);
+        
+        given(repository.delete(k)).willReturn(Boolean.TRUE);
+        
+        dk.executeOperation(k);
+        
+        verify(repository,times(1)).delete(k);
     }
     
 }

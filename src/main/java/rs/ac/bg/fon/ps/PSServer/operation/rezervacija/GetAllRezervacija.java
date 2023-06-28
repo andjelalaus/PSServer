@@ -8,6 +8,7 @@ package rs.ac.bg.fon.ps.PSServer.operation.rezervacija;
 import java.util.List;
 import rs.ac.bg.fon.ps.PSCommon.domain.Rezervacija;
 import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 
 /**
  * Konkretna klasa za varacnje svih rezervacija.
@@ -21,6 +22,13 @@ public class GetAllRezervacija extends AbstractGenericOperation {
      * Lista svih rezervacija imena rezervacije, nije inicijalizovana.
      */
     private List<Rezervacija> rezervacije;
+
+    public GetAllRezervacija() {
+    }
+
+    public GetAllRezervacija(Repository repo) {
+        repository=repo;
+    }
 
     @Override
     protected void preconditions(Object param) throws Exception {

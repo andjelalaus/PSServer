@@ -7,6 +7,7 @@ package rs.ac.bg.fon.ps.PSServer.operation.stavkerezervacije;
 import java.util.List;
 import rs.ac.bg.fon.ps.PSCommon.domain.StavkaRezervacije;
 import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 
 /**
  * Konkretna klasa za vracanje svih stavki rezervacija.
@@ -19,6 +20,13 @@ public class GetAllStavke extends AbstractGenericOperation {
      * Lista stavki rezervacije koja nije inicijalizovana
      */
     private List<StavkaRezervacije> stavke;
+
+    public GetAllStavke() {
+    }
+
+    public GetAllStavke(Repository repo) {
+        repository=repo;
+    }
 
     @Override
     protected void preconditions(Object param) throws Exception {

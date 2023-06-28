@@ -36,6 +36,7 @@ import rs.ac.bg.fon.ps.PSServer.operation.stavkerezervacije.UpdateStavka;
 import rs.ac.bg.fon.ps.PSServer.operation.user.Login;
 import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 import rs.ac.bg.fon.ps.PSServer.repository.db.DbRepository;
+import rs.ac.bg.fon.ps.PSServer.repository.db.impl.RepositoryDBGeneric;
 
 
 /**
@@ -60,7 +61,7 @@ public class Controller {
     * Jedinstvena instanca kontrolera.
     */
     private static Controller controller;
-
+    
     /**
     * Privatni konstruktor klase Controller.
     * Koristi se za sprečavanje direktnog instanciranja kontrolera.
@@ -229,7 +230,8 @@ public class Controller {
      * @throws Exception u slučaju greške prilikom dodavanja
      */
       private boolean addKarta(Object argument) throws Exception {
-        operation = new AddKarta();
+        
+        operation = new AddKarta(new RepositoryDBGeneric());
         operation.execute(argument);
         return ((AddKarta)operation).confirm();
     }
@@ -285,7 +287,7 @@ public class Controller {
     * @throws Exception u slučaju greške prilikom brisanja
     */
     private boolean deleteKarta(Object argument) throws Exception {
-        operation = new DeleteKarta();
+        operation = new DeleteKarta(new RepositoryDBGeneric());
         operation.execute(argument);
         return ((DeleteKarta)operation).confirm();
     }
@@ -360,7 +362,7 @@ public class Controller {
     * @throws Exception u slučaju greške prilikom vracanja karata
     */
     private Object getKarta(Object argument) throws Exception {
-        operation = new GetAllKarte();
+        operation = new GetAllKarte(new RepositoryDBGeneric());
         operation.execute(argument);
         return ((GetAllKarte)operation).getKarte();
     }
