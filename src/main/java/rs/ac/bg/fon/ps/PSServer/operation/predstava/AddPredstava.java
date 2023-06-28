@@ -44,10 +44,15 @@ public class AddPredstava extends AbstractGenericOperation{
      * Poruka o svim izuzecima.
      */
     private String exception="";
-
+/**
+ * Bezparametarski konstruktor
+ */
     public AddPredstava() {
     }
-
+/**
+     * Parametarski konstruktor sa parametrom repository
+     * @param repo predstavlja objekat klase Repository
+     */
     public AddPredstava(Repository repo) {
         repository=repo;
     }

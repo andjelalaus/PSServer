@@ -29,11 +29,16 @@ public class DeleteRezervacija extends AbstractGenericOperation{
      * Poruka o svim izuzecima
      */
     private String exception;
-
+/**
+ * Bezparametarski konstruktor
+ */
     public DeleteRezervacija() {
     }
 
-    
+   /**
+     * Parametarski konstruktor sa parametrom repository
+     * @param repo predstavlja objekat klase Repository
+     */
     public DeleteRezervacija(Repository repo) {
         repository=repo;
     }

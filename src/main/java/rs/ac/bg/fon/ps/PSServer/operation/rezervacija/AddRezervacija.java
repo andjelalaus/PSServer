@@ -39,10 +39,15 @@ public class AddRezervacija extends AbstractGenericOperation{
      * Poruka o svim izuzecima.
      */
     private String exception="";
-
+/**
+ * Bezparametarski konstruktor
+ */
     public AddRezervacija() {
     }
-
+/**
+     * Parametarski konstruktor sa parametrom repository
+     * @param repo predstavlja objekat klase Repository
+     */
     public AddRezervacija(Repository repo) {
         repository=repo;
     }

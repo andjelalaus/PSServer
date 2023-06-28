@@ -86,11 +86,11 @@ public class AddPlanTest {
         Repository repository = mock(Repository.class);
         AddPlan addPlan = new AddPlan(repository);
         
-        when(repository.add(any(PlanGledanja.class))).thenReturn(Boolean.TRUE);
+        when(repository.add(pl)).thenReturn(Boolean.TRUE);
         
         addPlan.executeOperation(pl);
         
-        verify(repository,times(1)).add(any(PlanGledanja.class));
+        verify(repository,times(1)).add(pl);
         
     }
 }

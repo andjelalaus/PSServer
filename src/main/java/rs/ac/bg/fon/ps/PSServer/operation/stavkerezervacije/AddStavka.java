@@ -49,10 +49,15 @@ public class AddStavka extends AbstractGenericOperation{
      * Poruka o svim izuzecima.
      */
     private String exception="";
-
+/**
+ * Bezparametarski konstruktor
+ */
     public AddStavka() {
     }
-
+/**
+     * Parametarski konstruktor sa parametrom repository
+     * @param repo predstavlja objekat klase Repository
+     */
     public AddStavka(Repository repo) {
         repository=repo;
     }

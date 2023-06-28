@@ -26,9 +26,15 @@ public class DeletePlan extends AbstractGenericOperation{
      * Poruka o opstem izuzetku.
      */
     private String exception;
-
+/**
+ * Bezparametarski konstruktor date klase
+ */
     public DeletePlan() {
     }
+    /**
+     * Parametarski konstruktor sa parametrom repository
+     * @param repo objekat klase Repository
+     */
     public DeletePlan(Repository repo) {
         repository=repo;
     }

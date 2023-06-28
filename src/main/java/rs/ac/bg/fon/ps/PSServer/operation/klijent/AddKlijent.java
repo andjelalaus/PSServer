@@ -46,10 +46,16 @@ public class AddKlijent extends AbstractGenericOperation {
      * Opšta poruka o izuzetku.
      */
     private String exception="";
-    
+    /**
+     * Bezparametarski konstruktor date klase
+     */
     public AddKlijent(){
         
     }
+    /**
+     * Parametarski konstruktor sa parametrom repository
+     * @param repo predstavlja objekat klase Repository
+     */
     public AddKlijent(Repository repo){
         repository=repo;
     }

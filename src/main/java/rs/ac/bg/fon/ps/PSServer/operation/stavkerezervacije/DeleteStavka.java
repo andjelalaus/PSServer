@@ -35,11 +35,16 @@ public class DeleteStavka extends AbstractGenericOperation {
      * Poruka o svim izuzecima.
      */
     private String exception;
-
+/**
+ * Bezparametarski konstruktor
+ */
     public DeleteStavka() {
     }
 
-    
+  /**
+     * Parametarski konstruktor sa parametrom repository
+     * @param repo predstavlja objekat klase Repository
+     */  
     public DeleteStavka(Repository repo) {
         repository=repo;
     }

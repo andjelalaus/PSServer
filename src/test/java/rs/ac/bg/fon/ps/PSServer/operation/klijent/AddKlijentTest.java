@@ -189,11 +189,11 @@ public class AddKlijentTest {
         Repository repository = mock(Repository.class);
         AddKlijent addKlijent = new AddKlijent(repository);
         
-        when(repository.add(any(Klijent.class))).thenReturn(Boolean.TRUE);
+        when(repository.add(k)).thenReturn(Boolean.TRUE);
         
         addKlijent.executeOperation(k);
         
-        verify(repository,times(1)).add(any(Klijent.class));
+        verify(repository,times(1)).add(k);
         
     }
 }

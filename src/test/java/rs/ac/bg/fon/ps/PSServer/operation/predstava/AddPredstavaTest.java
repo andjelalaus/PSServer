@@ -135,11 +135,11 @@ public class AddPredstavaTest {
         Repository repository = mock(Repository.class);
         AddPredstava addPredstava = new AddPredstava(repository);
         
-        when(repository.add(any(Predstava.class))).thenReturn(Boolean.TRUE);
+        when(repository.add(k)).thenReturn(Boolean.TRUE);
         
         addPredstava.executeOperation(k);
         
-        verify(repository,times(1)).add(any(Predstava.class));
+        verify(repository,times(1)).add(k);
         
     }
     

@@ -20,11 +20,16 @@ public class GetAllClients extends AbstractGenericOperation {
      * Lista klijenata koja nije inicijalizovana
      */
     private List<Klijent> klijenti;
-
+    /**
+     * Bezparametarski konstruktor date klase
+     */
     public GetAllClients() {
     }
 
-    
+    /**
+     * Parametarski konstruktor sa parametrom repository
+     * @param repo predstavlja objekat klase Repository
+     */
     public GetAllClients(Repository repo) {
         repository=repo;
     }

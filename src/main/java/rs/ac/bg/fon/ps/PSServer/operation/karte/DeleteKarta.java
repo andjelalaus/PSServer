@@ -36,10 +36,16 @@ public class DeleteKarta extends AbstractGenericOperation {
      * Validator koji se koristi za validaciju karte.
      */
     private IValidator validator;
-
+/**
+ * Bezparametarski konstruktor date klase
+ */
     public DeleteKarta(){
         
     }
+    /**
+     * Parametarski konstruktor sa parametrom repository
+     * @param repo predstavlja objekat klase Repository
+     */
     public DeleteKarta(Repository repo) {
         repository=repo;
     }

@@ -44,10 +44,15 @@ public class DeletePredstava extends AbstractGenericOperation{
      * Poruka o svim izuzecima.
      */
     private String exception="";
-
+/**
+ * Bezparametarski konstruktor
+ */
     public DeletePredstava() {
     }
-
+/**
+     * Parametarski konstruktor sa parametrom repository
+     * @param repo predstavlja objekat klase Repository
+     */
     public DeletePredstava(Repository repo) {
         repository=repo;
     }

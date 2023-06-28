@@ -32,9 +32,15 @@ public class AddPlan extends AbstractGenericOperation{
      * Validator koji se koristi za validaciju plana.
      */
     private IValidator validator;
-
+/**
+ * Bezparametarski konstruktor date klase
+ */
     public AddPlan() {
     }
+    /**
+     * Parametarski konstruktor sa parametrom repository
+     * @param repo predstavlja objekat klase Repository
+     */
      public AddPlan(Repository repo) {
          repository=repo;
     }

@@ -20,10 +20,15 @@ public class GetAllStavke extends AbstractGenericOperation {
      * Lista stavki rezervacije koja nije inicijalizovana
      */
     private List<StavkaRezervacije> stavke;
-
+/**
+ * Bezparametarski konstruktor
+ */
     public GetAllStavke() {
     }
-
+/**
+     * Parametarski konstruktor sa parametrom repository
+     * @param repo predstavlja objekat klase Repository
+     */
     public GetAllStavke(Repository repo) {
         repository=repo;
     }

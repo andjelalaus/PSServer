@@ -107,11 +107,11 @@ public class AddKartaTest {
         Repository repository = mock(Repository.class);
         AddKarta addKarta = new AddKarta(repository);
         
-        when(repository.add(any(Karta.class))).thenReturn(Boolean.TRUE);
+        when(repository.add(k)).thenReturn(Boolean.TRUE);
         
         addKarta.executeOperation(k);
         
-        verify(repository,times(1)).add(any(Karta.class));
+        verify(repository,times(1)).add(k);
         
     }
        

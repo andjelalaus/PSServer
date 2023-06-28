@@ -44,10 +44,16 @@ public class AddKarta extends AbstractGenericOperation {
      * Poruka o izuzetku koja ce sadrzati sve nastale izuzetke.
      */
     private String exception="";
-
+/**
+ * Bezparametarski konstruktor date klase
+ */
     public AddKarta(){
         
     }
+    /**
+     * Parametarski konstruktor sa parametrom repository
+     * @param repo predstavlja objekat klase Repository
+     */
     public AddKarta(Repository repo) {
         this.repository=repo;
     }

@@ -19,10 +19,16 @@ public class GetAllPredstava extends AbstractGenericOperation{
      * predstave su lista predstavi, lista nije inicijalizovana
      */
      private List<Predstava> predstave;
-
+/**
+ * Bezparametarski konstruktor
+ */
      public GetAllPredstava(){
          
      }
+     /**
+     * Parametarski konstruktor sa parametrom repository
+     * @param repo predstavlja objekat klase Repository
+     */
    public GetAllPredstava(Repository repo) {
         repository=repo;
     }

@@ -20,9 +20,15 @@ public class GetAllPlan extends AbstractGenericOperation {
      * Lista planova gledanja koja nije inicijalizovana.
      */
     private List<PlanGledanja> stavke;
-
+/**
+ * Bezparametarski konstruktor date klase
+ */
     public GetAllPlan() {
     }
+    /**
+     * Parametarski konstruktor sa parametrom repository
+     * @param repo predstavlja objekat klase Repository
+     */
     public GetAllPlan(Repository repo) {
         repository=repo;
     }

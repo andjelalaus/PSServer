@@ -22,10 +22,15 @@ public class GetAllRezervacija extends AbstractGenericOperation {
      * Lista svih rezervacija imena rezervacije, nije inicijalizovana.
      */
     private List<Rezervacija> rezervacije;
-
+/**
+ * Bezparametarski konstruktor
+ */
     public GetAllRezervacija() {
     }
-
+/**
+     * Parametarski konstruktor sa parametrom repository
+     * @param repo predstavlja objekat klase Repository
+     */
     public GetAllRezervacija(Repository repo) {
         repository=repo;
     }

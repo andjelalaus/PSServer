@@ -77,11 +77,11 @@ public class AddRezervacijaTest {
         Repository repository = mock(Repository.class);
         AddRezervacija addRez = new AddRezervacija(repository);
         
-        when(repository.addReturnKey(any(Rezervacija.class))).thenReturn(1);
+        when(repository.addReturnKey(k)).thenReturn(1);
         
         addRez.executeOperation(k);
         
-        verify(repository,times(1)).addReturnKey(any(Rezervacija.class));
+        verify(repository,times(1)).addReturnKey(k);
         
     }
     

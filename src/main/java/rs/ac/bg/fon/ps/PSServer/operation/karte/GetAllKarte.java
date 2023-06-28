@@ -19,10 +19,16 @@ public class GetAllKarte extends AbstractGenericOperation {
      * Lista karata koja ce se napuniti operacijom pretrage svih karata.
      */
         private List<Karta> karte;
-
+/**
+ * Bezparametarski konstruktor date klase
+ */
    public GetAllKarte(){
        
    } 
+   /**
+     * Parametarski konstruktor sa parametrom repository
+     * @param repo predstavlja objekat klase Repository
+     */
    public  GetAllKarte(Repository repo) {
        repository=repo;
     }

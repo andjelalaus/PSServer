@@ -118,11 +118,11 @@ public class AddStavkaTest {
         Repository repository = mock(Repository.class);
         AddStavka addSt = new AddStavka(repository);
         
-        when(repository.add(any(StavkaRezervacije.class))).thenReturn(Boolean.TRUE);
+        when(repository.add(k)).thenReturn(Boolean.TRUE);
         
         addSt.executeOperation(k);
         
-        verify(repository,times(1)).add(any(StavkaRezervacije.class));
+        verify(repository,times(1)).add(k);
         
     }
     
