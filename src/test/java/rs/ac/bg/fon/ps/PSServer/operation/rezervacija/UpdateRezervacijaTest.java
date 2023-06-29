@@ -10,8 +10,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import rs.ac.bg.fon.ps.PSCommon.domain.Klijent;
 import rs.ac.bg.fon.ps.PSCommon.domain.Rezervacija;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 import rs.ac.bg.fon.ps.PSServer.validator.ValidatorException;
 
 /**
@@ -57,5 +62,19 @@ public class UpdateRezervacijaTest {
         
       assertThrows(ValidatorException.class, ()->ak.preconditions(r));
     }
-    
+    @Test
+    public void testExecuteOperation() throws Exception{
+        Rezervacija k=new Rezervacija(1,1, new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan"));
+        
+       
+        Repository repository = mock(Repository.class);
+        UpdateRezervacija upRez = new UpdateRezervacija(repository);
+        
+        when(repository.edit(upRez)).thenReturn(Boolean.TRUE);
+        
+        upRez.executeOperation(k);
+        
+        verify(repository,times(1)).edit(k);
+        
+    }
 }

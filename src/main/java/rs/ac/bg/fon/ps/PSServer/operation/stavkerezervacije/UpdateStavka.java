@@ -6,6 +6,7 @@ package rs.ac.bg.fon.ps.PSServer.operation.stavkerezervacije;
 
 import rs.ac.bg.fon.ps.PSCommon.domain.StavkaRezervacije;
 import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
+import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 import rs.ac.bg.fon.ps.PSServer.validator.IValidator;
 import rs.ac.bg.fon.ps.PSServer.validator.ValidatorException;
 import rs.ac.bg.fon.ps.PSServer.validator.components.NumberValidator;
@@ -46,6 +47,14 @@ public class UpdateStavka extends AbstractGenericOperation {
      * Poruka o svim izuzecima.
      */
     private String exception="";
+
+    public UpdateStavka() {
+    }
+
+    
+    public UpdateStavka(Repository repo) {
+        repository=repo;
+    }
     
     @Override
     protected void preconditions(Object param) throws ValidatorException{
