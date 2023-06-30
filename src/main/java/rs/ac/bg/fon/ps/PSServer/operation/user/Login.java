@@ -4,7 +4,7 @@
  */
 package rs.ac.bg.fon.ps.PSServer.operation.user;
 
-import java.util.List;
+
 import rs.ac.bg.fon.ps.PSCommon.domain.User;
 import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
 import rs.ac.bg.fon.ps.PSServer.validator.IValidator;

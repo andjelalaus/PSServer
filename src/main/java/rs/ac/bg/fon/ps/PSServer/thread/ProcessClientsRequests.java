@@ -13,9 +13,6 @@ import rs.ac.bg.fon.ps.PSCommon.communication.Request;
 import rs.ac.bg.fon.ps.PSCommon.communication.Response;
 import rs.ac.bg.fon.ps.PSCommon.communication.Sender;
 import rs.ac.bg.fon.ps.PSServer.controller.Controller;
-import rs.ac.bg.fon.ps.PSCommon.domain.Predstava;
-import rs.ac.bg.fon.ps.PSCommon.domain.Rezervacija;
-import rs.ac.bg.fon.ps.PSCommon.domain.Klijent;
 import rs.ac.bg.fon.ps.PSCommon.domain.User;
 
 /**

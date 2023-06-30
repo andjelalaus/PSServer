@@ -9,7 +9,6 @@ import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
 import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 import rs.ac.bg.fon.ps.PSServer.validator.IValidator;
 import rs.ac.bg.fon.ps.PSServer.validator.ValidatorException;
-import rs.ac.bg.fon.ps.PSServer.validator.components.NumberValidator;
 import rs.ac.bg.fon.ps.PSServer.validator.components.OcenaValidator;
 
 /**

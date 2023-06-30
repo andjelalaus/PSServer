@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
-import rs.ac.bg.fon.ps.PSServer.form.component.table.UserTableModel;
 import rs.ac.bg.fon.ps.PSServer.server.Server;
 
 /**

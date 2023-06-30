@@ -7,24 +7,14 @@ package rs.ac.bg.fon.ps.PSServer.operation.predstava;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
-import static org.junit.Assert.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import rs.ac.bg.fon.ps.PSCommon.domain.Karta;
-import rs.ac.bg.fon.ps.PSCommon.domain.Klijent;
 import rs.ac.bg.fon.ps.PSCommon.domain.Predstava;
-import rs.ac.bg.fon.ps.PSCommon.domain.Rezervacija;
-import rs.ac.bg.fon.ps.PSCommon.domain.StavkaRezervacije;
-import rs.ac.bg.fon.ps.PSServer.operation.karte.GetAllKarte;
 import rs.ac.bg.fon.ps.PSServer.repository.Repository;
 
 /**

@@ -7,10 +7,7 @@ package rs.ac.bg.fon.ps.PSServer.operation.predstava;
 import rs.ac.bg.fon.ps.PSCommon.domain.Predstava;
 import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
 import rs.ac.bg.fon.ps.PSServer.repository.Repository;
-import rs.ac.bg.fon.ps.PSServer.validator.IValidator;
-import rs.ac.bg.fon.ps.PSServer.validator.ValidatorException;
-import rs.ac.bg.fon.ps.PSServer.validator.components.NumberValidator;
-import rs.ac.bg.fon.ps.PSServer.validator.components.TextValidator;
+
 
 /**
  * Konkretna klasa za brisanje predstave.

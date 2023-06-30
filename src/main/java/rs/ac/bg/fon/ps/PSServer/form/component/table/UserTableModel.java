@@ -6,7 +6,6 @@ package rs.ac.bg.fon.ps.PSServer.form.component.table;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import rs.ac.bg.fon.ps.PSCommon.domain.Klijent;
 import rs.ac.bg.fon.ps.PSCommon.domain.User;
 
     /**

@@ -10,7 +10,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import rs.ac.bg.fon.ps.PSCommon.domain.Klijent;
 import rs.ac.bg.fon.ps.PSCommon.domain.User;
 import rs.ac.bg.fon.ps.PSServer.thread.ProcessClientsRequests;
 

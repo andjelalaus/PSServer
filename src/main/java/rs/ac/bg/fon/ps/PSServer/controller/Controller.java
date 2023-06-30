@@ -5,7 +5,7 @@
  */
 package rs.ac.bg.fon.ps.PSServer.controller;
 
-import java.util.List;
+
 import rs.ac.bg.fon.ps.PSCommon.domain.Karta;
 import rs.ac.bg.fon.ps.PSCommon.domain.Predstava;
 import rs.ac.bg.fon.ps.PSCommon.domain.PlanGledanja;
@@ -34,8 +34,6 @@ import rs.ac.bg.fon.ps.PSServer.operation.stavkerezervacije.DeleteStavka;
 import rs.ac.bg.fon.ps.PSServer.operation.stavkerezervacije.GetAllStavke;
 import rs.ac.bg.fon.ps.PSServer.operation.stavkerezervacije.UpdateStavka;
 import rs.ac.bg.fon.ps.PSServer.operation.user.Login;
-import rs.ac.bg.fon.ps.PSServer.repository.Repository;
-import rs.ac.bg.fon.ps.PSServer.repository.db.DbRepository;
 import rs.ac.bg.fon.ps.PSServer.repository.db.impl.RepositoryDBGeneric;
 
 

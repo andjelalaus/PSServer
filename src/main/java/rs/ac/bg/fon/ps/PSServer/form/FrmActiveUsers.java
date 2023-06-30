@@ -5,7 +5,6 @@
 package rs.ac.bg.fon.ps.PSServer.form;
 
 import java.util.List;
-import rs.ac.bg.fon.ps.PSCommon.domain.Klijent;
 import rs.ac.bg.fon.ps.PSCommon.domain.User;
 import rs.ac.bg.fon.ps.PSServer.form.component.table.UserTableModel;
 

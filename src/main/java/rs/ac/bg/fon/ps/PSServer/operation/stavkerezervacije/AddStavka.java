@@ -4,7 +4,7 @@
  */
 package rs.ac.bg.fon.ps.PSServer.operation.stavkerezervacije;
 
-import rs.ac.bg.fon.ps.PSCommon.domain.Rezervacija;
+
 import rs.ac.bg.fon.ps.PSCommon.domain.StavkaRezervacije;
 import rs.ac.bg.fon.ps.PSServer.operation.AbstractGenericOperation;
 import rs.ac.bg.fon.ps.PSServer.repository.Repository;
