@@ -39,13 +39,16 @@ public class AddPredstavaTest {
 
       @Test
     public void testPreconditions() {
-        Predstava p=new Predstava(1, "Lala", "Belgrade", LocalDateTime.MIN,100);
+        Predstava p=new Predstava();
+        p.setNaziv("Napredno programiranje");
+        p.setMesto("Belgrade");
+        p.setVreme(LocalDateTime.MIN);
+        p.setKapacitet(100);
         assertDoesNotThrow(()->ak.preconditions(p));
     }
     @Test
      public void testPreconditionNazivNull() throws ValidatorException {
         Predstava p=new Predstava();
-        //p.setNaziv("Napredno programiranje");
         p.setMesto("Belgrade");
         p.setVreme(LocalDateTime.MIN);
         p.setKapacitet(100);
@@ -54,6 +57,7 @@ public class AddPredstavaTest {
     }
      @Test
       public void testPreconditionsnazivPrazno() throws ValidatorException {
+          //preko konstruktora zadate vrednosti da ne bi setter uhvatio gresku
           Predstava p=new Predstava(1, "", "Belgrade", LocalDateTime.MIN,100);
         
         assertThrows(ValidatorException.class,()->ak.preconditions(p));
@@ -61,13 +65,16 @@ public class AddPredstavaTest {
        @Test
       public void testPreconditionsNazivBroj() throws ValidatorException {
          
-        Predstava p=new Predstava(1, "12a", "Belgrade", LocalDateTime.MIN,100);
+        Predstava p=new Predstava();
+        p.setNaziv("12a");
+        p.setMesto("Belgrade");
+        p.setVreme(LocalDateTime.MIN);
+        p.setKapacitet(100);
         assertThrows(ValidatorException.class,()->ak.preconditions(p));
     }
        @Test
       public void testPreconditionsNazivVeciOD100() throws ValidatorException {
         Predstava p=new Predstava();
-        //p.setNaziv("Napredno programiranje");
         p.setMesto("Belgrade");
         p.setVreme(LocalDateTime.MIN);
         p.setKapacitet(100);
@@ -79,7 +86,6 @@ public class AddPredstavaTest {
      public void testPreconditionMestoNull() throws ValidatorException {
         Predstava p=new Predstava();
         p.setNaziv("Napredno programiranje");
-        //p.setMesto("Belgrade");
         p.setVreme(LocalDateTime.MIN);
         p.setKapacitet(100);
         
@@ -87,21 +93,25 @@ public class AddPredstavaTest {
     }
      @Test
       public void testPreconditionsMestoPrazno() throws ValidatorException {
-          Predstava p=new Predstava(1, "Lalal", "", LocalDateTime.MIN,100);
+           //preko konstruktora zadate vrednosti da ne bi setter uhvatio gresku
+          Predstava p=new Predstava(1, "Under the sea", "", LocalDateTime.MIN,100);
         
         assertThrows(ValidatorException.class,()->ak.preconditions(p));
     }
        @Test
       public void testPreconditionsMestoBroj() throws ValidatorException {
          
-        Predstava p=new Predstava(1, "Bela", "12a", LocalDateTime.MIN,100);
+        Predstava p=new Predstava();
+        p.setNaziv("Napredno programiranje");
+        p.setVreme(LocalDateTime.MIN);
+        p.setKapacitet(100);
+        p.setMesto("22a");
         assertThrows(ValidatorException.class,()->ak.preconditions(p));
     }
        @Test
       public void testPreconditionsMestoVeciOD100() throws ValidatorException {
         Predstava p=new Predstava();
-        //p.setNaziv("Napredno programiranje");
-        p.setNaziv("Belgrade");
+        p.setNaziv("Hamlet");
         p.setVreme(LocalDateTime.MIN);
         p.setKapacitet(100);
         p.setMesto("Brzo smeškaći mali pas skače preko velikih žbunova i veselo mlatara repom dok trči livadom punom šarenih cvetova.");
@@ -109,9 +119,9 @@ public class AddPredstavaTest {
         assertThrows(ValidatorException.class,()->ak.preconditions(p),"Polje moze da sadrzi maksimalno 100 znakova");
     }
         @Test
-    public void testPreconditionsKpacitetManjaOd0() {
+    public void testPreconditionsKapacitetManjaOd0() {
            
-        
+       //preko konstruktora zadate vrednosti da ne bi setter uhvatio gresku
        Predstava p=new Predstava(1, "Here", "Here", LocalDateTime.MIN,-1);
 
         
@@ -121,17 +131,21 @@ public class AddPredstavaTest {
     public void testExecuteOperation() throws Exception{
         
         LocalDateTime ld=LocalDateTime.of(2023, Month.MARCH, 10, 20, 0);
-        Predstava k=new Predstava(1, "Here", "Here",ld,20);
+        Predstava p=new Predstava();
+        p.setNaziv("Napredno programiranje");
+        p.setMesto("Belgrade");
+        p.setVreme(ld);
+        p.setKapacitet(100);
         
        
         Repository repository = mock(Repository.class);
         AddPredstava addPredstava = new AddPredstava(repository);
         
-        when(repository.add(k)).thenReturn(Boolean.TRUE);
+        when(repository.add(p)).thenReturn(Boolean.TRUE);
         
-        addPredstava.executeOperation(k);
+        addPredstava.executeOperation(p);
         
-        verify(repository,times(1)).add(k);
+        verify(repository,times(1)).add(p);
         
     }
     

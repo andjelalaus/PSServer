@@ -37,31 +37,57 @@ public class DeleteRezervacijaTest {
      @Test
     public void testPreconditionsBrPredstavaManjaOd0() {
            
-       Klijent k=new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan");
-       Rezervacija r=new Rezervacija(1, -1, k);
+        Klijent klij=new Klijent();
+        klij.setKlijentId(1);
+        klij.setIme("Andja");
+        klij.setEmail("aa@gg.com");
+        klij.setPrezime("Laus");
+        klij.setStatus("redovan");
+        //stavljene vrednosti preko konstruktora jer da su preko settera 
+        //uhvatio bi setter  gresku a ovde hocemo da proverimo da li ce je uhvatiti precondition
+       Rezervacija r=new Rezervacija(1, -1, klij);
 
         
       assertThrows(Exception.class, ()->ak.preconditions(r),"Broj predstavi ne sme biti prazan ili biti manje od 0");
     }
      @Test
     public void testPreconditions() {
-         Klijent k=new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan");
-         Rezervacija r=new Rezervacija(1, 22, k);
+        Klijent klij=new Klijent();
+        klij.setKlijentId(1);
+        klij.setIme("Andja");
+        klij.setEmail("aa@gg.com");
+        klij.setPrezime("Laus");
+        klij.setStatus("redovan");
+        
+        Rezervacija r=new Rezervacija();
+        r.setRezervacijaId(1);
+        r.setKlijentId(klij);
+        r.setBrojPredstave(1);
         assertDoesNotThrow(()->ak.preconditions(r));
     }
      @Test
     public void testExecuteOperation() throws Exception{
-        Rezervacija k=new Rezervacija(1,1, new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan"));
+        Klijent klij=new Klijent();
+        klij.setKlijentId(1);
+        klij.setIme("Andja");
+        klij.setEmail("aa@gg.com");
+        klij.setPrezime("Laus");
+        klij.setStatus("redovan");
+        
+        Rezervacija r=new Rezervacija();
+        r.setRezervacijaId(1);
+        r.setKlijentId(klij);
+        r.setBrojPredstave(1);
         
         
         Repository repository = mock(Repository.class);
         DeleteRezervacija dk = new DeleteRezervacija(repository);
         
-        given(repository.delete(k)).willReturn(Boolean.TRUE);
+        given(repository.delete(r)).willReturn(Boolean.TRUE);
         
-        dk.executeOperation(k);
+        dk.executeOperation(r);
         
-        verify(repository,times(1)).delete(k);
+        verify(repository,times(1)).delete(r);
     }
     
 }

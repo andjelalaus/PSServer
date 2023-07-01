@@ -37,18 +37,26 @@ public class GetAllPredstavaTest {
       @Test
     public void testExecuteOperation() throws Exception{
         LocalDateTime ld=LocalDateTime.of(2023, Month.MARCH, 10, 20, 0);
-        Predstava k=new Predstava(1, "Here", "Here",ld,20);
-        Predstava k2=new Predstava(2, "There", "There",ld,200);
+        Predstava p=new Predstava();
+        p.setNaziv("Faust");
+        p.setMesto("Belgrade");
+        p.setVreme(ld);
+        p.setKapacitet(100);
         
+        Predstava p2=new Predstava();
+        p2.setNaziv("Ko to tamo peva");
+        p2.setMesto("Zrenjanin");
+        p2.setVreme(ld);
+        p2.setKapacitet(100);
         
         Repository repository = mock(Repository.class);
         GetAllPredstava gak = new GetAllPredstava(repository);
         
-        given(repository.getAll(k)).willReturn(List.of(k,k2));
+        given(repository.getAll(p)).willReturn(List.of(p,p2));
        
-        gak.executeOperation(k);
+        gak.executeOperation(p);
        
-        verify(repository,times(1)).getAll(k);
+        verify(repository,times(1)).getAll(p);
       
     }
     

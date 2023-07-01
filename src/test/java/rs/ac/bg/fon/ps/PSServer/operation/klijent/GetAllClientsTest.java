@@ -35,8 +35,19 @@ public class GetAllClientsTest {
 
     @Test
     public void testExecuteOperation() throws Exception{
-        Klijent k=new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan");
-        Klijent k2=new Klijent(2, "Stefan", "Dobras", "dd@ss.com", "student");
+        Klijent k=new Klijent();
+        k.setKlijentId(1);
+        k.setIme("Andja");
+        k.setEmail("aa@gg.com");
+        k.setPrezime("Laus");
+        k.setStatus("redovan");
+        
+        Klijent k2=new Klijent();
+        k2.setKlijentId(2);
+        k2.setIme("Stefan");
+        k2.setEmail("dd@ss.com");
+        k2.setPrezime("Dobras");
+        k2.setStatus("student");
         
         Repository repository = mock(Repository.class);
         GetAllClients gak = new GetAllClients(repository);

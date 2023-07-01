@@ -39,9 +39,32 @@ public class DeleteStavkaTest {
     }
        @Test
     public void testPreconditions() {
-         Klijent k=new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan");
-         Rezervacija r=new Rezervacija(1, 22, k);
-         StavkaRezervacije st=new StavkaRezervacije(1, 10, 1, true, r, new Predstava(1, "Tataratira", "Bosko buha", LocalDateTime.MIN,2));
+        Klijent klij=new Klijent();
+        klij.setKlijentId(1);
+        klij.setIme("Nadja");
+        klij.setEmail("nadja@gg.com");
+        klij.setPrezime("Mirkovic");
+        klij.setStatus("student");
+        
+        Rezervacija r=new Rezervacija();
+        r.setRezervacijaId(1);
+        r.setKlijentId(klij);
+        r.setBrojPredstave(1);
+        
+        Predstava p=new Predstava();
+        p.setPredstavaId(1);
+        p.setMesto("Mala scena");
+        p.setNaziv("Pinokio");
+        p.setKapacitet(250);
+        p.setVreme(LocalDateTime.MIN);
+        
+        StavkaRezervacije st=new StavkaRezervacije();
+        st.setBrojSedista(10);
+        st.setRezervacijaId(r);
+        st.setPredstavaId(p);
+        st.setGledato(true);
+        st.setPopust(25);
+        st.setStavkaId(1);
         assertDoesNotThrow(()->ak.preconditions(st));
     }
     
@@ -49,9 +72,28 @@ public class DeleteStavkaTest {
       @Test
     public void testPreconditionsBrSedistaManjaOd0() {
            
-      Klijent k=new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan");
-         Rezervacija r=new Rezervacija(1, 22, k);
-         StavkaRezervacije st=new StavkaRezervacije(1, 10, -1, true, r, new Predstava(1, "Tataratira", "Bosko buha", LocalDateTime.MIN,2));
+        Klijent klij=new Klijent();
+        klij.setKlijentId(1);
+        klij.setIme("Nadja");
+        klij.setEmail("nadja@gg.com");
+        klij.setPrezime("Mirkovic");
+        klij.setStatus("student");
+        
+        Rezervacija r=new Rezervacija();
+        r.setRezervacijaId(1);
+        r.setKlijentId(klij);
+        r.setBrojPredstave(1);
+        
+        Predstava p=new Predstava();
+        p.setPredstavaId(1);
+        p.setMesto("Mala scena");
+        p.setNaziv("Ruzno pace");
+        p.setKapacitet(250);
+        p.setVreme(LocalDateTime.MIN);
+        
+        //stavljene vrednosti preko konstruktora jer da su preko settera 
+        //uhvatio bi setter  gresku a ovde hocemo da proverimo da li ce je uhvatiti precondition
+        StavkaRezervacije st=new StavkaRezervacije(1, 10, -1, true, r, p);
 
         
       assertThrows(Exception.class, ()->ak.preconditions(st),"Broj sedista ne sme biti manje od 0");
@@ -59,9 +101,27 @@ public class DeleteStavkaTest {
        @Test
     public void testPreconditionsPopustManjiOd0() {
            
-      Klijent k=new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan");
-         Rezervacija r=new Rezervacija(1, 22, k);
-         StavkaRezervacije st=new StavkaRezervacije(1, -1, 2, true, r, new Predstava(1, "Tataratira", "Bosko buha", LocalDateTime.MIN,2));
+        Klijent klij=new Klijent();
+        klij.setKlijentId(1);
+        klij.setIme("Nadja");
+        klij.setEmail("nadja@gg.com");
+        klij.setPrezime("Mirkovic");
+        klij.setStatus("student");
+        
+        Rezervacija r=new Rezervacija();
+        r.setRezervacijaId(1);
+        r.setKlijentId(klij);
+        r.setBrojPredstave(1);
+        
+        Predstava p=new Predstava();
+        p.setPredstavaId(1);
+        p.setMesto("Mala scena");
+        p.setNaziv("Crvenkapa");
+        p.setKapacitet(250);
+        p.setVreme(LocalDateTime.MIN);
+        //stavljene vrednosti preko konstruktora jer da su preko settera 
+        //uhvatio bi setter gresku a ovde hocemo da proverimo da li ce je uhvatiti precondition
+         StavkaRezervacije st=new StavkaRezervacije(1, -1, 2, true, r, p);
          
         
       assertThrows(Exception.class, ()->ak.preconditions(st),"Popust ne sme biti manje od 0 ili veci od 100");
@@ -69,28 +129,72 @@ public class DeleteStavkaTest {
         @Test
     public void testPreconditionsPopustVeciOd100() {
            
-      Klijent k=new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan");
-         Rezervacija r=new Rezervacija(1, 22, k);
-         StavkaRezervacije st=new StavkaRezervacije(1, 101, 2, true, r, new Predstava(1, "Tataratira", "Bosko buha", LocalDateTime.MIN,2));
+        Klijent klij=new Klijent();
+        klij.setKlijentId(1);
+        klij.setIme("Nadja");
+        klij.setEmail("nadja@gg.com");
+        klij.setPrezime("Mirkovic");
+        klij.setStatus("student");
+        
+        Rezervacija r=new Rezervacija();
+        r.setRezervacijaId(1);
+        r.setKlijentId(klij);
+        r.setBrojPredstave(1);
+        
+        Predstava p=new Predstava();
+        p.setPredstavaId(1);
+        p.setMesto("Mala scena");
+        p.setNaziv("Snezana i sedam patuljaka");
+        p.setKapacitet(250);
+        p.setVreme(LocalDateTime.MIN);
+        
+        //stavljene vrednosti preko konstruktora jer da su preko settera 
+        //uhvatio bi setter gresku a ovde hocemo da proverimo da li ce je uhvatiti precondition
+        StavkaRezervacije st=new StavkaRezervacije(1, 101, 2, true, r, p);
 
         
       assertThrows(Exception.class, ()->ak.preconditions(st),"Popust ne sme biti manje od 0 ili veci od 100");
     }
     @Test
     public void testExecuteOperation() throws Exception{
-        Rezervacija r=new Rezervacija(1,1, new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan"));
+        
         LocalDateTime ld=LocalDateTime.of(2023, Month.MARCH, 10, 20, 0);
-        StavkaRezervacije k=new StavkaRezervacije(1, 10, 1, true, r, new Predstava(1, "Here", "Here",ld,20));
+        Klijent klij=new Klijent();
+        klij.setKlijentId(1);
+        klij.setIme("Nadja");
+        klij.setEmail("nadja@gg.com");
+        klij.setPrezime("Mirkovic");
+        klij.setStatus("student");
+        
+        Rezervacija r=new Rezervacija();
+        r.setRezervacijaId(1);
+        r.setKlijentId(klij);
+        r.setBrojPredstave(1);
+        
+        Predstava p=new Predstava();
+        p.setPredstavaId(1);
+        p.setMesto("Mala scena");
+        p.setNaziv("Pepeljuga");
+        p.setKapacitet(250);
+        p.setVreme(ld);
+        
+        StavkaRezervacije st=new StavkaRezervacije();
+        st.setBrojSedista(10);
+        st.setRezervacijaId(r);
+        st.setPredstavaId(p);
+        st.setGledato(true);
+        st.setPopust(25);
+        st.setStavkaId(1);
         
         
         Repository repository = mock(Repository.class);
         DeleteStavka dk = new DeleteStavka(repository);
         
-        given(repository.delete(k)).willReturn(Boolean.TRUE);
+        given(repository.delete(st)).willReturn(Boolean.TRUE);
         
-        dk.executeOperation(k);
+        dk.executeOperation(st);
         
-        verify(repository,times(1)).delete(k);
+        verify(repository,times(1)).delete(st);
     }
     
 }

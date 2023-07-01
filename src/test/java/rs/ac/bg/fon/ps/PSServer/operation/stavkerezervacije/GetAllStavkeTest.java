@@ -40,19 +40,51 @@ public class GetAllStavkeTest {
 
     @Test
     public void testExecuteOperation() throws Exception{
-        Rezervacija r=new Rezervacija(1,1, new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan"));
+        
         LocalDateTime ld=LocalDateTime.of(2023, Month.MARCH, 10, 20, 0);
-        StavkaRezervacije k=new StavkaRezervacije(1, 10, 1, true, r, new Predstava(1, "Here", "Here",ld,20));
-         StavkaRezervacije k2=new StavkaRezervacije(2, 5, 2, false, r, new Predstava(1, "Here", "Here",ld,20));
+        Klijent klij=new Klijent();
+        klij.setKlijentId(1);
+        klij.setIme("Andjela");
+        klij.setEmail("aa@gg.com");
+        klij.setPrezime("Lausevic");
+        klij.setStatus("redovan");
+        
+        Rezervacija r=new Rezervacija();
+        r.setRezervacijaId(1);
+        r.setKlijentId(klij);
+        r.setBrojPredstave(1);
+        
+        Predstava p=new Predstava();
+        p.setPredstavaId(1);
+        p.setMesto("Velika scena");
+        p.setNaziv("Uspavana lepotica");
+        p.setKapacitet(250);
+        p.setVreme(ld);
+        
+        StavkaRezervacije st=new StavkaRezervacije();
+        st.setBrojSedista(10);
+        st.setRezervacijaId(r);
+        st.setPredstavaId(p);
+        st.setGledato(true);
+        st.setPopust(15);
+        st.setStavkaId(1);
+        
+        StavkaRezervacije st2=new StavkaRezervacije();
+        st2.setBrojSedista(2);
+        st2.setRezervacijaId(r);
+        st2.setPredstavaId(p);
+        st2.setGledato(false);
+        st2.setPopust(25);
+        st2.setStavkaId(2);
         
         Repository repository = mock(Repository.class);
         GetAllStavke gak = new GetAllStavke(repository);
         
-        given(repository.getAll(k)).willReturn(List.of(k,k2));
+        given(repository.getAll(st)).willReturn(List.of(st,st2));
        
-        gak.executeOperation(k);
+        gak.executeOperation(st);
        
-        verify(repository,times(1)).getAll(k);
+        verify(repository,times(1)).getAll(st);
       
     }
     

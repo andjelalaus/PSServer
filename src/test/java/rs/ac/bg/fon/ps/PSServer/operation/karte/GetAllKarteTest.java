@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import static org.mockito.BDDMockito.given;
-import org.mockito.Mock;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -22,15 +21,14 @@ import rs.ac.bg.fon.ps.PSCommon.domain.Predstava;
 import rs.ac.bg.fon.ps.PSCommon.domain.Rezervacija;
 import rs.ac.bg.fon.ps.PSCommon.domain.StavkaRezervacije;
 import rs.ac.bg.fon.ps.PSServer.repository.Repository;
-import rs.ac.bg.fon.ps.PSServer.repository.db.impl.RepositoryDBGeneric;
+
 
 /**
  *
  * @author andelalausevic
  */
 public class GetAllKarteTest {
-     @Mock
-    RepositoryDBGeneric repo;   
+
     GetAllKarte ak;
     
    
@@ -45,11 +43,46 @@ public class GetAllKarteTest {
     }
   @Test
     public void testExecuteOperation() throws Exception{
-        Rezervacija r=new Rezervacija(1,1, new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan"));
-        LocalDateTime ld=LocalDateTime.of(2023, Month.MARCH, 10, 20, 0);
-        StavkaRezervacije st=new StavkaRezervacije(1, 10, 1, true, r, new Predstava(1, "Here", "Here",ld,20));
-        Karta k=new Karta(1, 2, r, st);
-        Karta k2=new Karta(2,3,r,st);
+        
+        LocalDateTime ld=LocalDateTime.of(2023, Month.DECEMBER, 10, 20, 0);
+        Klijent klij=new Klijent();
+        klij.setKlijentId(1);
+        klij.setIme("Andja");
+        klij.setEmail("aa@gg.com");
+        klij.setPrezime("Laus");
+        klij.setStatus("redovan");
+        
+        Rezervacija r=new Rezervacija();
+        r.setRezervacijaId(1);
+        r.setKlijentId(klij);
+        r.setBrojPredstave(1);
+        
+        Predstava p=new Predstava();
+        p.setPredstavaId(1);
+        p.setMesto("Velika scena");
+        p.setNaziv("Don Kihot");
+        p.setKapacitet(200);
+        p.setVreme(ld);
+        
+        StavkaRezervacije st=new StavkaRezervacije();
+        st.setBrojSedista(10);
+        st.setRezervacijaId(r);
+        st.setPredstavaId(p);
+        st.setGledato(true);
+        st.setPopust(10);
+        st.setStavkaId(1);
+        
+        Karta k=new Karta();
+        k.setCena(1000);
+        k.setKartaId(1);
+        k.setRezervacijaId(r);
+        k.setStavkaId(st);
+        
+        Karta k2=new Karta();
+        k2.setCena(1500);
+        k2.setKartaId(2);
+        k2.setRezervacijaId(r);
+        k2.setStavkaId(st);
         
         Repository repository = mock(Repository.class);
         GetAllKarte gak = new GetAllKarte(repository);

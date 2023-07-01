@@ -41,25 +41,110 @@ public class DeleteKartaTest {
 
     @Test
     public void testPreconditions() {
-        Rezervacija r=new Rezervacija(1,1, new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan"));
-        StavkaRezervacije st=new StavkaRezervacije(1, 10, 1, true, r, new Predstava(1, "Here", "Here", LocalDateTime.MIN,20));
-        Karta k=new Karta(1, 1000, r, st);
+        Klijent klij=new Klijent();
+        klij.setKlijentId(1);
+        klij.setIme("Andja");
+        klij.setEmail("aa@gg.com");
+        klij.setPrezime("Laus");
+        klij.setStatus("redovan");
+        
+        Rezervacija r=new Rezervacija();
+        r.setRezervacijaId(1);
+        r.setKlijentId(klij);
+        r.setBrojPredstave(1);
+        
+        Predstava p=new Predstava();
+        p.setPredstavaId(1);
+        p.setMesto("Velika scena");
+        p.setNaziv("Don Kihot");
+        p.setKapacitet(200);
+        p.setVreme(LocalDateTime.MIN);
+        
+        StavkaRezervacije st=new StavkaRezervacije();
+        st.setBrojSedista(10);
+        st.setRezervacijaId(r);
+        st.setPredstavaId(p);
+        st.setGledato(true);
+        st.setPopust(10);
+        st.setStavkaId(1);
+        
+        Karta k=new Karta();
+        k.setCena(1000);
+        k.setKartaId(1);
+        k.setRezervacijaId(r);
+        k.setStavkaId(st);
         assertDoesNotThrow(()->ak.preconditions(k));
     }
         @Test
     public void testPreconditionsCenaManjaODNule() throws ValidatorException {
-        Rezervacija r=new Rezervacija(1,1, new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan"));
-        StavkaRezervacije st=new StavkaRezervacije(1, 10, 1, true, r, new Predstava(1, "Here", "Here", LocalDateTime.MIN,20));
+        Klijent klij=new Klijent();
+        klij.setKlijentId(1);
+        klij.setIme("Andja");
+        klij.setEmail("aa@gg.com");
+        klij.setPrezime("Laus");
+        klij.setStatus("redovan");
+        
+        Rezervacija r=new Rezervacija();
+        r.setRezervacijaId(1);
+        r.setKlijentId(klij);
+        r.setBrojPredstave(1);
+        
+        Predstava p=new Predstava();
+        p.setPredstavaId(1);
+        p.setMesto("Velika scena");
+        p.setNaziv("Don Kihot");
+        p.setKapacitet(200);
+        p.setVreme(LocalDateTime.MIN);
+        
+        StavkaRezervacije st=new StavkaRezervacije();
+        st.setBrojSedista(10);
+        st.setRezervacijaId(r);
+        st.setPredstavaId(p);
+        st.setGledato(true);
+        st.setPopust(10);
+        st.setStavkaId(1);
+        //stavljene vrednosti preko konstruktora jer da su preko settera 
+        //uhvatio bi setter za cenu gresku, a ovde hocemo da proverimo da li ce je uhvatiti precondition
         Karta k=new Karta(1, -1, r, st);
         
         assertThrows(ValidatorException.class,()->ak.preconditions(k));
     }
     @Test
     public void testExecuteOperation() throws Exception{
-        Rezervacija r=new Rezervacija(1,1, new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan"));
-        LocalDateTime ld=LocalDateTime.of(2023, Month.MARCH, 10, 20, 0);
-        StavkaRezervacije st=new StavkaRezervacije(1, 10, 1, true, r, new Predstava(1, "Here", "Here",ld,20));
-        Karta k=new Karta(1, 2, r, st);
+        
+        LocalDateTime ld=LocalDateTime.of(2023, Month.DECEMBER, 10, 20, 0);
+        Klijent klij=new Klijent();
+        klij.setKlijentId(1);
+        klij.setIme("Andja");
+        klij.setEmail("aa@gg.com");
+        klij.setPrezime("Laus");
+        klij.setStatus("redovan");
+        
+        Rezervacija r=new Rezervacija();
+        r.setRezervacijaId(1);
+        r.setKlijentId(klij);
+        r.setBrojPredstave(1);
+        
+        Predstava p=new Predstava();
+        p.setPredstavaId(1);
+        p.setMesto("Velika scena");
+        p.setNaziv("Don Kihot");
+        p.setKapacitet(200);
+        p.setVreme(ld);
+        
+        StavkaRezervacije st=new StavkaRezervacije();
+        st.setBrojSedista(10);
+        st.setRezervacijaId(r);
+        st.setPredstavaId(p);
+        st.setGledato(true);
+        st.setPopust(10);
+        st.setStavkaId(1);
+        
+        Karta k=new Karta();
+        k.setCena(1000);
+        k.setKartaId(1);
+        k.setRezervacijaId(r);
+        k.setStavkaId(st);
         
         Repository repository = mock(Repository.class);
         DeleteKarta dk = new DeleteKarta(repository);

@@ -36,18 +36,31 @@ public class GetAllRezervacijaTest {
     }
  @Test
     public void testExecuteOperation() throws Exception{
-        Rezervacija k=new Rezervacija(1,1, new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan"));
-        Rezervacija k2=new Rezervacija(2,2, new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan"));
+        Klijent klij=new Klijent();
+        klij.setKlijentId(1);
+        klij.setIme("Andja");
+        klij.setEmail("aa@gg.com");
+        klij.setPrezime("Laus");
+        klij.setStatus("redovan");
+        
+        Rezervacija r=new Rezervacija();
+        r.setRezervacijaId(1);
+        r.setKlijentId(klij);
+        r.setBrojPredstave(1);
        
+        Rezervacija r2=new Rezervacija();
+        r2.setRezervacijaId(2);
+        r2.setKlijentId(klij);
+        r2.setBrojPredstave(3);
         
         Repository repository = mock(Repository.class);
         GetAllRezervacija gak = new GetAllRezervacija(repository);
         
-        given(repository.getAll(k)).willReturn(List.of(k,k2));
+        given(repository.getAll(r)).willReturn(List.of(r,r2));
        
-        gak.executeOperation(k);
+        gak.executeOperation(r);
        
-        verify(repository,times(1)).getAll(k);
+        verify(repository,times(1)).getAll(r);
       
     }
     

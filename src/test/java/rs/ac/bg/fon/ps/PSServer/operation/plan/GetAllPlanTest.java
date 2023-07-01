@@ -41,21 +41,44 @@ public class GetAllPlanTest {
 
     @Test
     public void testExecuteOperation() throws Exception{
-        Klijent klij=new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan");
-        LocalDateTime ld=LocalDateTime.of(2023, Month.MARCH, 10, 20, 0);
-        Predstava p= new Predstava(1, "Here", "Here",ld,20);
+       LocalDateTime ld=LocalDateTime.of(2023, Month.MARCH, 10, 20, 0);
+
+        Klijent k=new Klijent();
+        k.setKlijentId(1);
+        k.setIme("Andja");
+        k.setEmail("aa@gg.com");
+        k.setPrezime("Laus");
+        k.setStatus("redovan");
         
-        PlanGledanja k1=new PlanGledanja(p, klij, Boolean.TRUE,9);
-        PlanGledanja k2=new PlanGledanja(p, klij, Boolean.FALSE,10);
+        Predstava p=new Predstava();
+        p.setPredstavaId(1);
+        p.setMesto("Velika scena");
+        p.setNaziv("Don Kihot");
+        p.setKapacitet(200);
+        p.setVreme(ld);
+        
+        PlanGledanja pl=new PlanGledanja();
+        pl.setGledao(Boolean.TRUE);
+        pl.setKlijentId(k);
+        pl.setPredstavaId(p);
+        pl.setOcena(10);
+        
+        PlanGledanja pl2=new PlanGledanja();
+        pl2.setGledao(Boolean.FALSE);
+        pl2.setKlijentId(k);
+        pl2.setPredstavaId(p);
+        pl2.setOcena(7);
+        
+       
         
         Repository repository = mock(Repository.class);
         GetAllPlan gak = new GetAllPlan(repository);
         
-        given(repository.getAll(k1)).willReturn(List.of(k1,k2));
+        given(repository.getAll(pl)).willReturn(List.of(pl,pl2));
        
-        gak.executeOperation(k1);
+        gak.executeOperation(pl);
        
-        verify(repository,times(1)).getAll(k1);
+        verify(repository,times(1)).getAll(pl);
       
     }
     

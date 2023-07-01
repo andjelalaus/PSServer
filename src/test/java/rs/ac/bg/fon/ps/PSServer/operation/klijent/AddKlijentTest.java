@@ -8,6 +8,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -36,18 +38,30 @@ public class AddKlijentTest {
 
      @Test
     public void testPreconditions() {
-         Klijent k=new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan");
+        Klijent k=new Klijent();
+        k.setKlijentId(1);
+        k.setIme("Andja");
+        k.setEmail("aa@gg.com");
+        k.setPrezime("Laus");
+        k.setStatus("redovan");
         assertDoesNotThrow(()->ak.preconditions(k));
     }
         @Test
     public void testPreconditionsImePrazno() throws ValidatorException {
+        //preko konstruktora postavljene vrednosti jer bi uhvatio setter gresku
+        //a ovde hocemo da proverimo da li bi uhvatio precondition
         Klijent k=new Klijent(1, "", "Laus", "aa@gg.com", "redovan");
         
         assertThrows(ValidatorException.class,()->ak.preconditions(k));
     }
        @Test
     public void testPreconditionsImeBroj() throws ValidatorException {
-        Klijent k=new Klijent(1, "a12", "Laus", "aa@gg.com", "redovan");
+        Klijent k=new Klijent();
+        k.setKlijentId(1);
+        k.setIme("a123");
+        k.setEmail("aa@gg.com");
+        k.setPrezime("Laus");
+        k.setStatus("redovan");
         
         assertThrows(ValidatorException.class,()->ak.preconditions(k));
     }
@@ -63,13 +77,20 @@ public class AddKlijentTest {
     }
      @Test
       public void testPreconditionsPrezimePrazno() throws ValidatorException {
+         //preko konstruktora postavljene vrednosti jer bi uhvatio setter gresku
+        //a ovde hocemo da proverimo da li bi uhvatio precondition
           Klijent k=new Klijent(1, "And", "", "aa@gg.com", "redovan");
         
         assertThrows(ValidatorException.class,()->ak.preconditions(k));
     }
        @Test
       public void testPreconditionsPrezimeBroj() throws ValidatorException {
-          Klijent k=new Klijent(1, "And", "12aa", "aa@gg.com", "redovan");
+        Klijent k=new Klijent();
+        k.setKlijentId(1);
+        k.setIme("Andjela");
+        k.setEmail("aa@gg.com");
+        k.setPrezime("12dad");
+        k.setStatus("redovan");
         
         assertThrows(ValidatorException.class,()->ak.preconditions(k));
     }
@@ -85,6 +106,8 @@ public class AddKlijentTest {
     }
        @Test
          public void testPreconditionsMejlPrazno() throws ValidatorException {
+           //preko konstruktora postavljene vrednosti jer bi uhvatio setter gresku
+        //a ovde hocemo da proverimo da li bi uhvatio precondition
           Klijent k=new Klijent(1, "And", "Laal", "", "redovan");
         
         assertThrows(ValidatorException.class,()->ak.preconditions(k));
@@ -99,32 +122,31 @@ public class AddKlijentTest {
         
         assertThrows(ValidatorException.class,()->ak.preconditions(k));
     }
-       @Test
-    public void testPreconditionsMejlNijeMejl() throws ValidatorException {
-          Klijent k=new Klijent(1, "And", "Laal", "aaaaaa", "redovan");
+    @ParameterizedTest
+    @CsvSource ({
+		"aaaaa",
+                "aaaa@",
+                "@gggg",
+                "@gg.c",
+                "aa.aa",
+                "1234"
+                
+	})
+    public void testPreconditionsMejlNijeMejl(String email) throws ValidatorException {
+        Klijent k=new Klijent();
+        k.setId(1);
+        k.setPrezime("Nana");
+        k.setStatus("redovan");
+        k.setIme("Laus");
+        k.setEmail(email);
         
         assertThrows(ValidatorException.class,()->ak.preconditions(k));
     }
-    @Test
-       public void testPreconditionsMejlNijeMejl2() throws ValidatorException {
-          Klijent k=new Klijent(1, "And", "Laal", "aaaaaa@", "redovan");
-        
-        assertThrows(ValidatorException.class,()->ak.preconditions(k));
-    }
-       @Test
-              public void testPreconditionsMejlNijeMejl3() throws ValidatorException {
-          Klijent k=new Klijent(1, "And", "Laal", "@gg", "redovan");
-        
-        assertThrows(ValidatorException.class,()->ak.preconditions(k));
-    }
-              @Test
-      public void testPreconditionsMejlNijeMejl4() throws ValidatorException {
-          Klijent k=new Klijent(1, "And", "Laal", "@gg.c", "redovan");
-        
-        assertThrows(ValidatorException.class,()->ak.preconditions(k));
-    }
+    
             @Test
       public void testPreconditionsStatusPrazno() throws ValidatorException {
+         //preko konstruktora postavljene vrednosti jer bi uhvatio setter gresku
+        //a ovde hocemo da proverimo da li bi uhvatio precondition
           Klijent k=new Klijent(1, "And", "Laal", "@gg.c", "");
         
         assertThrows(ValidatorException.class,()->ak.preconditions(k));
@@ -174,7 +196,12 @@ public class AddKlijentTest {
     }
        @Test
     public void testExecuteOperation() throws Exception{
-        Klijent k=new Klijent(1, "Andja", "Laus", "aa@gg.com", "redovan");
+        Klijent k=new Klijent();
+        k.setKlijentId(1);
+        k.setIme("Andja");
+        k.setEmail("aa@gg.com");
+        k.setPrezime("Laus");
+        k.setStatus("redovan");
         
         Repository repository = mock(Repository.class);
         AddKlijent addKlijent = new AddKlijent(repository);

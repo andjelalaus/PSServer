@@ -38,13 +38,16 @@ public class DeletePredstavaTest {
 
     @Test
     public void testPreconditions() {
-        Predstava p=new Predstava(1, "Lala", "Belgrade", LocalDateTime.MIN,100);
+        Predstava p=new Predstava();
+        p.setNaziv("Faust");
+        p.setMesto("Belgrade");
+        p.setVreme(LocalDateTime.MIN);
+        p.setKapacitet(100);
         assertDoesNotThrow(()->ak.preconditions(p));
     }
     @Test
      public void testPreconditionNazivNull() throws ValidatorException {
         Predstava p=new Predstava();
-        //p.setNaziv("Napredno programiranje");
         p.setMesto("Belgrade");
         p.setVreme(LocalDateTime.MIN);
         p.setKapacitet(100);
@@ -54,8 +57,7 @@ public class DeletePredstavaTest {
      @Test
      public void testPreconditionMestoNull() throws ValidatorException {
         Predstava p=new Predstava();
-        p.setNaziv("Napredno programiranje");
-        //p.setMesto();
+        p.setNaziv("Ubistvo u Orjent ekspresu");
         p.setVreme(LocalDateTime.MIN);
         p.setKapacitet(100);
         
@@ -64,9 +66,8 @@ public class DeletePredstavaTest {
        @Test
      public void testPreconditionVremeNull() throws ValidatorException {
         Predstava p=new Predstava();
-        p.setNaziv("Napredno programiranje");
-        p.setMesto("Na lepom plavom dunavu");
-        //p.setVreme(LocalDateTime.MIN);
+        p.setNaziv("Ubistvo na Nilu");
+        p.setMesto("Novi Sad");
         p.setKapacitet(100);
         
         assertThrows(Exception.class,()->ak.preconditions(p),"Vreme predstave ne sme biti prazno");
@@ -74,16 +75,20 @@ public class DeletePredstavaTest {
       @Test
     public void testExecuteOperation() throws Exception{
         LocalDateTime ld=LocalDateTime.of(2023, Month.MARCH, 10, 20, 0);
-        Predstava k=new Predstava(1, "Here", "Here",ld,20);
+        Predstava p=new Predstava();
+        p.setNaziv("Faust");
+        p.setMesto("Belgrade");
+        p.setVreme(ld);
+        p.setKapacitet(100);
         
         Repository repository = mock(Repository.class);
         DeletePredstava dk = new DeletePredstava(repository);
         
-        given(repository.delete(k)).willReturn(Boolean.TRUE);
+        given(repository.delete(p)).willReturn(Boolean.TRUE);
         
-        dk.executeOperation(k);
+        dk.executeOperation(p);
         
-        verify(repository,times(1)).delete(k);
+        verify(repository,times(1)).delete(p);
     }
     
 }

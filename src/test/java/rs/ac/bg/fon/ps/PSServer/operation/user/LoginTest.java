@@ -31,44 +31,54 @@ public class LoginTest {
 
      @Test
     public void testPreconditions() {
-        User u=new User("aaaa", "lalalala");
+        User u=new User();
+        u.setUsername("marko");
+        u.setPassword("marko123");
         assertDoesNotThrow(()->ak.preconditions(u));
     }
     @Test
      public void testPreconditionUsernameNull() throws ValidatorException {
        User u=new User();
-       u.setPassword("lalala");
+       u.setPassword("pass12345");
         
         assertThrows(ValidatorException.class,()->ak.preconditions(u));
     }
      @Test
       public void testPreconditionsUsernamePrazno() throws ValidatorException {
-         User u=new User("", "lalalala");
+          //preko konstruktora setovane vrednosti jer bi setter uhvatio gresku
+          //ovde hocemo da vidimo da li ce precondition da uhvati izuzetak
+         User u=new User("", "1234567");
         
         assertThrows(ValidatorException.class,()->ak.preconditions(u));
     }
          @Test
      public void testPreconditionPassNull() throws ValidatorException {
        User u=new User();
-       u.setUsername("lalala");
+       u.setUsername("admin");
         
         assertThrows(ValidatorException.class,()->ak.preconditions(u));
     }
      @Test
       public void testPreconditionsPassPrazno() throws ValidatorException {
-         User u=new User("allalal", "");
+          //preko konstruktora setovane vrednosti jer bi setter uhvatio gresku
+          //ovde hocemo da vidimo da li ce precondition da uhvati izuzetak
+         User u=new User("admin", "");
         
         assertThrows(ValidatorException.class,()->ak.preconditions(u));
     }
       @Test
       public void testexcecute() throws Exception{
-           User u=new User("admin", "admin");
+           User u=new User();
+           u.setUsername("admin");
+           u.setPassword("admin");
            ak.executeOperation(u);
            assertEquals(u,ak.getLogin());
       }
        @Test
       public void testexcecuteError() throws Exception{
-           User u=new User("admin1", "admin1");
+           User u=new User();
+           u.setUsername("admin1");
+           u.setPassword("admin1");
            ak.executeOperation(u);
            assertNotEquals(u,ak.getLogin());
       }
